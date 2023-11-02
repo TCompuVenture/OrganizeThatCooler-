@@ -1,6 +1,7 @@
 package com.example.maintest
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.maintest.ui.theme.MainTestTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +34,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name! Bruh",
+        text = "Hello $name!",
         modifier = modifier
     )
 }
@@ -43,4 +45,8 @@ fun GreetingPreview() {
     MainTestTheme {
         Greeting("Android")
     }
+}
+
+fun sendMessage(view: View?) {
+    // Do something in response to button click
 }

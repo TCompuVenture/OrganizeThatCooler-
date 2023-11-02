@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="31">
         <activity android:name=".SecondActivity" />
+        <activity android:name=".ScanInActivity" />
+        <activity android:name=".ScanOutActivity" />
+        <activity android:name=".ViewActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
