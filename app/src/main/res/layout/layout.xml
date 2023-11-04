@@ -23,9 +23,15 @@
         android:text="Scan Out" />
 
     <Button
-        android:id="@+id/test"
+        android:id="@+id/passBundle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="passbundletesting" />
+
+    <Button
+        android:id="@+id/noBundlePass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't pass bundle" />
 
 </LinearLayout>

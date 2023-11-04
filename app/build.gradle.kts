@@ -75,7 +75,7 @@ dependencies {
 
     //db stuff
     //Stuff I added to get DB working
-    // kapt("groupID:artifactId:version")
+    //kapt("groupID:artifactId:version") //Do I need this? Guess I don't...
 //    val room_version = "2.6.0"
 //
 //    implementation("androidx.room:room-runtime:$room_version")

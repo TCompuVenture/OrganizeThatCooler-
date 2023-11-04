@@ -12,7 +12,8 @@ class MainActivity : ComponentActivity() {
         var toView: Button = findViewById<Button>(R.id.toView)
         var toScanIn: Button = findViewById<Button>(R.id.toScanIn)
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
-        var test: Button = findViewById<Button>(R.id.test)
+        var test: Button = findViewById<Button>(R.id.passBundle)
+        var noBundlePass: Button = findViewById<Button>(R.id.noBundlePass)
 
         toView.setOnClickListener {
            // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
@@ -34,7 +35,6 @@ class MainActivity : ComponentActivity() {
             }
         }
         test.setOnClickListener{
-            Intent(this, SecondActivity::class.java).also {
 
                 Intent(this, SecondActivity::class.java).also {
                    // bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
@@ -42,9 +42,16 @@ class MainActivity : ComponentActivity() {
                     bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
                     it.putExtras(bundle)
                     startActivity(it)
-
                 }
+        }
+        noBundlePass.setOnClickListener{
 
+            Intent(this, SecondActivity::class.java).also {
+                var bundle = Bundle()
+                bundle.putString("key1", "Not passing Bundle From Main Activity")
+                // clearing the bundle
+                bundle.clear()
+                it.putExtras(bundle)
                 startActivity(it)
             }
         }
