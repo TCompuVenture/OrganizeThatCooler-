@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         }       //Also refers to previous context
 
         toScanIn.setOnClickListener{
-            Intent(this, ScanInActivity::class.java).also {
+            Intent(this, Scan::class.java).also {
                 startActivity(it)
             }
         }

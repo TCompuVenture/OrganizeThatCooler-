@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,6 @@ class SecondActivity : AppCompatActivity() {
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
             //Also refers to previous context
-
 
 
         }
