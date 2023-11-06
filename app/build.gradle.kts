@@ -74,6 +74,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    implementation("android.arch.persistence.room:runtime:1.1.1")
+    annotationProcessor("android.arch.persistence.room:compiler:1.1.1")
+
     implementation ("com.google.android.gms:play-services-vision:11.0.2")
 
 
