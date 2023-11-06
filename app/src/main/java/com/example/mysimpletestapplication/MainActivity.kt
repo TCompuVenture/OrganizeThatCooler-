@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
         }
 
         toScanOut.setOnClickListener{
-            Intent(this, ScanOutActivity::class.java).also {
+            Intent(this, Scan::class.java).also {
                 startActivity(it)
             }
         }
