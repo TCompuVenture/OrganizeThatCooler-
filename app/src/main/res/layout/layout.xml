@@ -29,9 +29,9 @@
         android:text="passbundletesting" />
 
     <Button
-        android:id="@+id/noBundlePass"
+        android:id="@+id/pushToFirebase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Don't pass bundle" />
+        android:text="Push value to Firebase" />
 
 </LinearLayout>

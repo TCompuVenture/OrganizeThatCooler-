@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "10764022097",
+    "project_id": "silocoolerdb-tc",
+    "storage_bucket": "silocoolerdb-tc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10764022097:android:53afc387dc31262b7ba370",
+        "android_client_info": {
+          "package_name": "com.example.mysimpletestapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXqYoWFb3vXp3oZ3hJFaAWpIo6Bq-DA4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

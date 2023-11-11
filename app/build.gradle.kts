@@ -4,6 +4,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    // Add the Google services Gradle plugin
+    id("com.google.gms.google-services")
   //  id("kotlin-kapt")
     // kotlin("kapt") version "1.9.20"
 }
@@ -66,6 +68,10 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-common-ktx:20.4.2")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("com.google.android.gms:play-services-vision-common:19.1.3")
+    implementation("com.google.android.gms:play-services-vision:20.1.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -77,7 +83,19 @@ dependencies {
     implementation("android.arch.persistence.room:runtime:1.1.1")
     annotationProcessor("android.arch.persistence.room:compiler:1.1.1")
 
-    implementation ("com.google.android.gms:play-services-vision:11.0.2")
+    //bar code scanner implementation
+    //implementation ("com.google.android.gms:play-services-vision:11.0.2")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
+
+
+
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    // https://firebase.google.com/docs/android/setup#available-libraries
 
 
     //db stuff

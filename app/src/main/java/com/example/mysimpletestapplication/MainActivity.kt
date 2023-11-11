@@ -1,11 +1,25 @@
 package com.example.mysimpletestapplication
 
+
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.ComponentActivity
+import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
+import com.google.firebase.database.getValue
+import java.util.Date
+
 
 class MainActivity : ComponentActivity() {
+    //Creates an instance of our database class
+    private lateinit var myDB: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout) //How you set what layout runs. Can prob. dump rest of this code.
@@ -13,12 +27,34 @@ class MainActivity : ComponentActivity() {
         var toScanIn: Button = findViewById<Button>(R.id.toScanIn)
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
         var test: Button = findViewById<Button>(R.id.passBundle)
-        var noBundlePass: Button = findViewById<Button>(R.id.noBundlePass)
+        var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
+
+        //ACTUALLY creates the instance of our database worker thingy
+        myDB = Firebase.database.reference
+
+        //returns you a new key for your new object!
+
+        //To store a new item in the firebase
+        //1. get the table / entity / class
+        //database.child("classname")
+
+        //Grab everything with message tag and store it in the query object
+        //var query = myDB.child("message.orderByKey()")
+        //database.child("Message").child("longFancyKeyHere").child("text").setValue("my message")
+
+        //Need to use an event listener b/c we need to wait for the data
+        //Every snap (snapshot) is a .json object. --> it is the query result
+//        for (key in snapshot.key)
+//        {
+//            var msg = snapshot[key]
+//        }
+
+       // val key = myDB.child("message").push().key
 
         toView.setOnClickListener {
            // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
           //  textView.text = "What hath you done?"
-            Intent(this, ViewActivity::class.java).also {
+            Intent(this, ViewActivity2::class.java).also {
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
         }       //Also refers to previous context
@@ -44,16 +80,43 @@ class MainActivity : ComponentActivity() {
                     startActivity(it)
                 }
         }
-        noBundlePass.setOnClickListener{
+        pushToFirebase.setOnClickListener{
+
+            val key = myDB.child("message").push().key
+            if (key!=null){
+                //myDB.child("new message").child(key).setValue("myThingy")
+                writeNewMessage(key, "Hellooooooo there!", Date().toString())
+            }
+
+          //  textView.text = Date().toString()
+            var query = myDB.child("message").orderByKey()
+            query.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //Log.d(TAG, "here")
+                    for (snap in snapshot.children){
+                        val msg = snap.getValue<Message>()
+                        val date = msg?.datetime
+                        Log.d(ContentValues.TAG, "Value is: $date")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
             Intent(this, SecondActivity::class.java).also {
                 var bundle = Bundle()
-                bundle.putString("key1", "Not passing Bundle From Main Activity")
+                bundle.putString("key", key)
                 // clearing the bundle
-                bundle.clear()
                 it.putExtras(bundle)
+
                 startActivity(it)
             }
         }
+    }
+    fun writeNewMessage(msgId: String, text: String, timestamp: String){
+        val msg = Message(text, timestamp)
+        myDB.child("message").child(msgId).setValue(msg)
     }
 }

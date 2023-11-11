@@ -28,7 +28,7 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".Scan" />
         <activity android:name=".ScanOutActivity" />
-        <activity android:name=".ViewActivity" />
+        <activity android:name=".ViewActivity2" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
