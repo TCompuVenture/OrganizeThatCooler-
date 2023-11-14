@@ -28,6 +28,8 @@ class MainActivity : ComponentActivity() {
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
         var test: Button = findViewById<Button>(R.id.passBundle)
         var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
+        var activity_date_view_main_access: Button = findViewById<Button>(R.id.activity_date_view_main_access)
+
 
         //ACTUALLY creates the instance of our database worker thingy
         myDB = Firebase.database.reference
@@ -61,6 +63,11 @@ class MainActivity : ComponentActivity() {
 
         toScanIn.setOnClickListener{
             Intent(this, Scan::class.java).also {
+                startActivity(it)
+            }
+        }
+        activity_date_view_main_access.setOnClickListener {
+            Intent(this, DataViewMain::class.java).also {
                 startActivity(it)
             }
         }
