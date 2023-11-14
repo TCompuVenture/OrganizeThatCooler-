@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNoteActivity">
+    tools:context=".AddNote">
 
     <TextView
         android:id="@+id/addNoteHeading"
@@ -22,7 +22,7 @@
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/sillo" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <EditText
         android:id="@+id/titleEditText"
