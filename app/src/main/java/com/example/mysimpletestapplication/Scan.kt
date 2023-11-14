@@ -28,10 +28,15 @@ class Scan : AppCompatActivity() {
     private var toneGen1: ToneGenerator? = null
     private var barcodeText: TextView? = null
     private var barcodeData: String? = null
+    private var foundBarcode = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan) //How you set what layout runs. Can prob. dump rest of this code.
-        var toMenu: Button = findViewById<Button>(R.id.toMenu)
+        val bundle = intent.extras
+        val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        var textBox: TextView = findViewById(R.id.InorOut)
+        val toMenu: Button = findViewById(R.id.toMenu)
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
@@ -41,9 +46,9 @@ class Scan : AppCompatActivity() {
         toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         surfaceView = findViewById<View>(R.id.surface_view) as SurfaceView?
         barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
-        initialiseDetectorsAndSources()
+        initialiseDetectorsAndSources(s, textBox)
     }
-    private fun initialiseDetectorsAndSources() {
+    private fun initialiseDetectorsAndSources(s: String,textBox: TextView) {
 
         //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
         barcodeDetector = BarcodeDetector.Builder(this)
@@ -65,7 +70,7 @@ class Scan : AppCompatActivity() {
                     } else {
                         ActivityCompat.requestPermissions(
                             this@Scan,
-                            arrayOf<String>(android.Manifest.permission.CAMERA),
+                            arrayOf(android.Manifest.permission.CAMERA),
                             REQUEST_CAMERA_PERMISSION
                         )
                     }
@@ -93,7 +98,10 @@ class Scan : AppCompatActivity() {
 
             override fun receiveDetections(detections: Detections<Barcode>) {
                 val barcodes = detections.detectedItems
-                if (barcodes.size() != 0) {
+
+                if(foundBarcode){
+                    return
+                } else if (barcodes.size() != 0) {
                     barcodeText!!.post {
                         if (barcodes.valueAt(0).email != null) {
                             barcodeText?.removeCallbacks(null)
@@ -104,15 +112,34 @@ class Scan : AppCompatActivity() {
                             barcodeData = barcodes.valueAt(0).displayValue
                             barcodeText?.text = barcodeData
                             toneGen1!!.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
+                            nextScreen(s, barcodeData)
+                            foundBarcode = true
+                            return@post
                         }
                     }
+                    return
                 }
             }
         })
     }
-    @Throws(IOException::class)
-    fun foo() {
-        throw IOException()
+
+    private fun nextScreen(s: String, barcodeData: String?){
+        if (s.compareTo("In").equals(0)){
+            Intent(this, ScanInActivity::class.java).also {
+                val bundle1 = Bundle()
+                bundle1.putString("key1", barcodeData)
+                it.putExtras(bundle1)
+                startActivity(it)
+            }
+        }
+        if (s.compareTo("Out") == 0){
+            Intent(this, ScanOutActivity::class.java).also {
+                val bundle2 = Bundle()
+                bundle2.putString("key1", barcodeData)
+                it.putExtras(bundle2)
+                startActivity(it)
+            }
+        }
     }
 
 }

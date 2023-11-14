@@ -17,4 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back" />
+
+    <TextView
+        android:id="@+id/barcode2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nothing"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 </LinearLayout>

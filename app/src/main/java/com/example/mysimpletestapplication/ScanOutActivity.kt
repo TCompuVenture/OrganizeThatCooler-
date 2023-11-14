@@ -3,12 +3,17 @@ package com.example.mysimpletestapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class ScanOutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_out) //How you set what layout runs. Can prob. dump rest of this code.
+        val bundle = intent.extras
+        val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        var textbox: TextView = findViewById(R.id.barcode2)
+        textbox.text = s
         var toMenu: Button = findViewById<Button>(R.id.toMenu3)
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {

@@ -63,6 +63,9 @@ class MainActivity : ComponentActivity() {
 
         toScanIn.setOnClickListener{
             Intent(this, Scan::class.java).also {
+                var bundle2 = Bundle()
+                bundle2.putString("key1", "In")
+                it.putExtras(bundle2)
                 startActivity(it)
             }
         }
@@ -74,6 +77,9 @@ class MainActivity : ComponentActivity() {
 
         toScanOut.setOnClickListener{
             Intent(this, Scan::class.java).also {
+                var bundle1 = Bundle()
+                bundle1.putString("key1", "Out")
+                it.putExtras(bundle1)
                 startActivity(it)
             }
         }
