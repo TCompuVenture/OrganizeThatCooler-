@@ -37,6 +37,11 @@ class Scan : AppCompatActivity() {
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
+
+
+        nextScreen(s, barcodeData)
+
+
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)

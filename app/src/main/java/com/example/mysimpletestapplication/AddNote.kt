@@ -14,7 +14,8 @@ class AddNote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val bundle = intent.extras
+        val s = bundle!!.getString("key1", "No value from MainActivity :(")
         db = NotesDatabaseHelper(this)
 
         binding.saveButton.setOnClickListener {

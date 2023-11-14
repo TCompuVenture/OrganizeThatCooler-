@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
+import com.example.mysimpletestapplication.databinding.ActivityDataViewMainBinding
 
 class ScanInActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDataViewMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_in) //How you set what layout runs. Can prob. dump rest of this code.
@@ -22,5 +23,16 @@ class ScanInActivity : AppCompatActivity() {
             } //Before also: defines an instance of an intent in context of our second activity
             //Also refers to previous context
         }
+        binding = ActivityDataViewMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.addButton.setOnClickListener {
+            val bundle1 = Bundle()
+            bundle1.putString("key1", s)
+            it.putExtras(bundle1)
+            val intent = Intent(this, AddNote::class.java )
+            startActivity(intent)
+        }
+
+        binding.addButton.performClick()
     }
 }
