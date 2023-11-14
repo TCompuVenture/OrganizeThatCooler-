@@ -34,10 +34,4 @@
         android:layout_height="wrap_content"
         android:text="Push value to Firebase" />
 
-    <Button
-        android:id="@+id/activity_date_view_main_access"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Access Note Application" />
-
 </LinearLayout>

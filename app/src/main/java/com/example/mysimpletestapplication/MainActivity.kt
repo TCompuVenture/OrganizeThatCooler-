@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
         var test: Button = findViewById<Button>(R.id.passBundle)
         var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
-        var activity_date_view_main_access: Button = findViewById<Button>(R.id.activity_date_view_main_access)
+        //var activity_date_view_main_access: Button = findViewById<Button>(R.id.activity_date_view_main_access)
 
 
         //ACTUALLY creates the instance of our database worker thingy
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
         toView.setOnClickListener {
            // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
           //  textView.text = "What hath you done?"
-            Intent(this, ViewActivity2::class.java).also {
+            Intent(this, DataViewMain::class.java).also {
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
         }       //Also refers to previous context
@@ -69,11 +69,11 @@ class MainActivity : ComponentActivity() {
                 startActivity(it)
             }
         }
-        activity_date_view_main_access.setOnClickListener {
-            Intent(this, DataViewMain::class.java).also {
-                startActivity(it)
-            }
-        }
+//        activity_date_view_main_access.setOnClickListener {
+//            Intent(this, DataViewMain::class.java).also {
+//                startActivity(it)
+//            }
+//        }
 
         toScanOut.setOnClickListener{
             Intent(this, Scan::class.java).also {
