@@ -3,6 +3,7 @@ package com.example.mysimpletestapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mysimpletestapplication.databinding.ActivityDataViewMainBinding
 
@@ -26,6 +27,14 @@ class DataViewMain : AppCompatActivity() {
             val intent = Intent(this, AddNote::class.java )
             startActivity(intent)
         }
+
+        var backButton: Button = findViewById<Button>(R.id.backButton)
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java )
+            startActivity(intent)
+
+        }
+
 
     }
 
