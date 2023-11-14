@@ -130,12 +130,21 @@ class Scan : AppCompatActivity() {
 
     private fun nextScreen(s: String, barcodeData: String?){
         if (s.compareTo("In").equals(0)){
+            val intent = Intent(this, AddNote::class.java ).also {
+                val bundle1 = Bundle()
+                bundle1.putString("key1", s)
+                it.putExtras(bundle1)
+                startActivity(it)
+            }
+            /*
             Intent(this, ScanInActivity::class.java).also {
                 val bundle1 = Bundle()
                 bundle1.putString("key1", barcodeData)
                 it.putExtras(bundle1)
                 startActivity(it)
             }
+            */
+
         }
         if (s.compareTo("Out") == 0){
             Intent(this, ScanOutActivity::class.java).also {

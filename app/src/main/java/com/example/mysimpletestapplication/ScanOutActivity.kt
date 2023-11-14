@@ -14,7 +14,7 @@ class ScanOutActivity : AppCompatActivity() {
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         var textbox: TextView = findViewById(R.id.barcode2)
         textbox.text = s
-        var toMenu: Button = findViewById<Button>(R.id.toMenu3)
+        var toMenu: Button = findViewById<Button>(R.id.home1)
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)

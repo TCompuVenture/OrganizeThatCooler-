@@ -1,6 +1,7 @@
 package com.example.mysimpletestapplication
 
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.mysimpletestapplication.databinding.ActivityAddNoteBinding
@@ -23,8 +24,11 @@ class AddNote : AppCompatActivity() {
             val content = binding.contentEditText.text.toString()
             val note = Note(0, title, content)
             db.insertNote(note)
-            finish()
             Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
+            Intent(this, ScanInActivity::class.java).also {
+                startActivity(it)
+            }
+            finish()
         }
     }
 }

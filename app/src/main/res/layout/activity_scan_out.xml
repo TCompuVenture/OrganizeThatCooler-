@@ -13,7 +13,7 @@
         android:textSize="40sp" />
 
     <Button
-        android:id="@+id/toMenu3"
+        android:id="@+id/home1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back" />
