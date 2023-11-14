@@ -35,6 +35,7 @@
 
         <activity android:name=".SecondActivity" />
         <activity android:name=".Scan" />
+        <activity android:name=".ScanInActivity" />
         <activity android:name=".ScanOutActivity" />
         <activity android:name=".ViewActivity2" />
         <activity
