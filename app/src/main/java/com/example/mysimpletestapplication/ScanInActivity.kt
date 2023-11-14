@@ -26,10 +26,12 @@ class ScanInActivity : AppCompatActivity() {
         binding = ActivityDataViewMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.addButton.setOnClickListener {
-            val bundle1 = Bundle()
-            bundle1.putString("key1", s)
-            it.putExtras(bundle1)
-            val intent = Intent(this, AddNote::class.java )
+
+            val intent = Intent(this, AddNote::class.java ).also {
+                val bundle1 = Bundle()
+                bundle1.putString("key1", s)
+                it.putExtras(bundle1)
+            }
             startActivity(intent)
         }
 
