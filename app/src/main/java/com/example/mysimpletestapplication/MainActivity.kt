@@ -26,9 +26,9 @@ class MainActivity : ComponentActivity() {
         var toView: Button = findViewById<Button>(R.id.toView)
         var toScanIn: Button = findViewById<Button>(R.id.toScanIn)
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
-        var test: Button = findViewById<Button>(R.id.passBundle)
-        var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
-        //var activity_date_view_main_access: Button = findViewById<Button>(R.id.activity_date_view_main_access)
+       //TODO: Remove - Old code for testing!
+        // var test: Button = findViewById<Button>(R.id.passBundle)
+       // var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
 
 
         //ACTUALLY creates the instance of our database worker thingy
@@ -83,53 +83,55 @@ class MainActivity : ComponentActivity() {
                 startActivity(it)
             }
         }
-        test.setOnClickListener{
 
-                Intent(this, SecondActivity::class.java).also {
-                   // bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
-                    var bundle = Bundle()
-                    bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
-                    it.putExtras(bundle)
-                    startActivity(it)
-                }
-        }
-        pushToFirebase.setOnClickListener{
-
-            val key = myDB.child("message").push().key
-            if (key!=null){
-                //myDB.child("new message").child(key).setValue("myThingy")
-                writeNewMessage(key, "Hellooooooo there!", Date().toString())
-            }
-
-          //  textView.text = Date().toString()
-            var query = myDB.child("message").orderByKey()
-            query.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    //Log.d(TAG, "here")
-                    for (snap in snapshot.children){
-                        val msg = snap.getValue<Message>()
-                        val date = msg?.datetime
-                        Log.d(ContentValues.TAG, "Value is: $date")
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
-
-            Intent(this, SecondActivity::class.java).also {
-                var bundle = Bundle()
-                bundle.putString("key", key)
-                // clearing the bundle
-                it.putExtras(bundle)
-
-                startActivity(it)
-            }
-        }
-    }
-    fun writeNewMessage(msgId: String, text: String, timestamp: String){
-        val msg = Message(text, timestamp)
-        myDB.child("message").child(msgId).setValue(msg)
+        //TODO: Remove this code! It was for testing Firebase / bundle passing. We don't need it anymore! Just kept in case we ever need to look back at it.
+//        test.setOnClickListener{
+//
+//                Intent(this, SecondActivity::class.java).also {
+//                   // bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
+//                    var bundle = Bundle()
+//                    bundle.putString("key1", "Passing Bundle From Main Activity to 2nd Activity")
+//                    it.putExtras(bundle)
+//                    startActivity(it)
+//                }
+//        }
+//        pushToFirebase.setOnClickListener{
+//
+//            val key = myDB.child("message").push().key
+//            if (key!=null){
+//                //myDB.child("new message").child(key).setValue("myThingy")
+//                writeNewMessage(key, "Hellooooooo there!", Date().toString())
+//            }
+//
+//          //  textView.text = Date().toString()
+//            var query = myDB.child("message").orderByKey()
+//            query.addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    //Log.d(TAG, "here")
+//                    for (snap in snapshot.children){
+//                        val msg = snap.getValue<Message>()
+//                        val date = msg?.datetime
+//                        Log.d(ContentValues.TAG, "Value is: $date")
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    TODO("Not yet implemented")
+//                }
+//            })
+//
+//            Intent(this, SecondActivity::class.java).also {
+//                var bundle = Bundle()
+//                bundle.putString("key", key)
+//                // clearing the bundle
+//                it.putExtras(bundle)
+//
+//                startActivity(it)
+//            }
+//        }
+//    }
+//    fun writeNewMessage(msgId: String, text: String, timestamp: String){
+//        val msg = Message(text, timestamp)
+//        myDB.child("message").child(msgId).setValue(msg)
     }
 }

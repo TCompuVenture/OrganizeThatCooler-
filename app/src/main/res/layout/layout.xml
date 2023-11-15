@@ -22,16 +22,16 @@
         android:layout_height="wrap_content"
         android:text="Scan Out" />
 
-    <Button
-        android:id="@+id/passBundle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="passbundletesting" />
+<!--    <Button-->
+<!--        android:id="@+id/passBundle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="passbundletesting" />-->
 
-    <Button
-        android:id="@+id/pushToFirebase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Push value to Firebase" />
+<!--    <Button-->
+<!--        android:id="@+id/pushToFirebase"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Push value to Firebase" />-->
 
 </LinearLayout>

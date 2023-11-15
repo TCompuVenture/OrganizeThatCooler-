@@ -33,7 +33,7 @@
                 android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="30dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/edit_pencil" />
 
         </RelativeLayout>
 
