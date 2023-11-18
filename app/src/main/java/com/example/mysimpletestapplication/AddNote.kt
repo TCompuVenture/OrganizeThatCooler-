@@ -3,6 +3,8 @@ package com.example.mysimpletestapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.mysimpletestapplication.databinding.ActivityAddNoteBinding
 
@@ -17,8 +19,9 @@ class AddNote : AppCompatActivity() {
         setContentView(binding.root)
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        val UPCText : TextView = findViewById<TextView>(R.id.contentEditText)
+        UPCText.text = s
         db = NotesDatabaseHelper(this)
-
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val content = binding.contentEditText.text.toString()

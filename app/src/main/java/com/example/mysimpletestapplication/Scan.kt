@@ -35,13 +35,11 @@ class Scan : AppCompatActivity() {
         setContentView(R.layout.activity_scan) //How you set what layout runs. Can prob. dump rest of this code.
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        //-------------------
+        nextScreen(s, "hi")//Get rid of this to test the barcode scanner on your phone
+        //-------------------
         var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
-
-
-        nextScreen(s, barcodeData)
-
-
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
@@ -130,21 +128,12 @@ class Scan : AppCompatActivity() {
 
     private fun nextScreen(s: String, barcodeData: String?){
         if (s.compareTo("In").equals(0)){
-            val intent = Intent(this, AddNote::class.java ).also {
-                val bundle1 = Bundle()
-                bundle1.putString("key1", s)
-                it.putExtras(bundle1)
-                startActivity(it)
-            }
-            /*
-            Intent(this, ScanInActivity::class.java).also {
+            Intent(this, AddNote::class.java ).also {
                 val bundle1 = Bundle()
                 bundle1.putString("key1", barcodeData)
                 it.putExtras(bundle1)
                 startActivity(it)
             }
-            */
-
         }
         if (s.compareTo("Out") == 0){
             Intent(this, ScanOutActivity::class.java).also {
