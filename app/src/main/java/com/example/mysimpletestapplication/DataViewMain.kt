@@ -19,7 +19,7 @@ class DataViewMain : AppCompatActivity() {
         setContentView(binding.root)
 
         db = ItemDatabaseHelper(this)
-        itemAdapter = ItemAdapter(db.getAllNotes(), this)
+        itemAdapter = ItemAdapter(db.getAllItems(), this)
 
         binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.notesRecyclerView.adapter = itemAdapter
@@ -44,6 +44,6 @@ class DataViewMain : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        itemAdapter.refreshData(db.getAllNotes())
+        itemAdapter.refreshData(db.getAllItems())
     }
 }

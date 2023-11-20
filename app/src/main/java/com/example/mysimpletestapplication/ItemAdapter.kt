@@ -42,8 +42,8 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
         }
 
         holder.deleteButton.setOnClickListener {
-            db.deleteNote(note.id)
-            refreshData(db.getAllNotes())
+            db.deleteItem(note.id)
+            refreshData(db.getAllItems())
             Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
         }
     }

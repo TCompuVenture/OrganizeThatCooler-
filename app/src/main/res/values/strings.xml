@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My simple test application</string>
+    <string name="app_name">Organize that freezer!</string>
     <string name="defaultTextViewText">Welcome to my happy little test app!</string>
     <string name="gps_button_text">Click Me!</string>
 </resources>

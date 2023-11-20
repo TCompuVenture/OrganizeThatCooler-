@@ -27,17 +27,18 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         onCreate(db)
     }
 
-    fun insertNote(item: Item){
+    fun insertItem(item: Item){
         val db = writableDatabase
         val values = ContentValues().apply{
             put(COLUMN_TITLE, item.title)
             put(COLUMN_CONTENT, item.upc)
+            put(COLUMN_CONTENT, item.qty) //Should break stuff
         }
         db.insert(TABLE_NAME, null, values)
         db.close()
     }
 
-    fun getAllNotes(): List<Item> {
+    fun getAllItems(): List<Item> {
         val notesList = mutableListOf<Item>()
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME"
@@ -56,11 +57,12 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         return notesList
     }
 
-    fun updateNote(item: Item){
+    fun updateItem(item: Item){
         val db = writableDatabase
         val values = ContentValues().apply{
             put(COLUMN_TITLE, item.title)
             put(COLUMN_CONTENT, item.upc)
+            put(COLUMN_CONTENT, item.qty) //Should break stuff
         }
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(item.id.toString())
@@ -83,7 +85,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         return Item(id, title, content, 1) //Passing in dummy qty for now
     }
 
-    fun deleteNote(noteId: Int){
+    fun deleteItem(noteId: Int){
         val db = writableDatabase
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(noteId.toString())

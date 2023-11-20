@@ -50,3 +50,4 @@
         app:layout_constraintTop_toBottomOf="@+id/updateTitleEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -13,20 +13,20 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.834" />
 
     <ImageView
         android:id="@+id/saveButton"
         android:layout_width="107dp"
         android:layout_height="120dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginEnd="152dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/addNoteHeading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNoteHeading"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/check" />
 
     <EditText
@@ -47,12 +47,12 @@
         android:id="@+id/contentEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:inputType="text"
         android:text="Name3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="113dp" />
+        app:layout_constraintGuide_begin="98dp" />
 
     <TextView
         android:id="@+id/ItemName_Info"
@@ -83,8 +83,7 @@
         android:id="@+id/UPC_Info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="16dp"
         android:text="UPC"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/contentEditText"
@@ -92,5 +91,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/quantityTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Quantity:  "
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentEditText" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="47dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantityTextBox">
+
+        <Button
+            android:id="@+id/buttonMinus"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#FF5722"
+            android:text="-"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/addButton_AddItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:background="#00B512"
+            android:text="+"
+            android:textColor="#000000"
+            android:textSize="36sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

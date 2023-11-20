@@ -32,7 +32,7 @@ class UpdateActivity : AppCompatActivity() {
             val newTitle = binding.updateTitleEditText.text.toString()
             val newContent = binding.updateContentEditText.text.toString()
             val updateItem = Item(noteId, newTitle, newContent, 1) //Passing default value for now
-            db.updateNote(updateItem)
+            db.updateItem(updateItem)
             finish()
             Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()
 
