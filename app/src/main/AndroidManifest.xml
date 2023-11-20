@@ -23,14 +23,14 @@
             android:name=".UpdateActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNote"
+            android:name=".AddItem"
             android:exported="false" />
         <activity
             android:name=".DataViewMain"
             android:exported="false" />
-        <activity
-            android:name=".DataView"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".DataView"-->
+<!--            android:exported="false" />-->
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"

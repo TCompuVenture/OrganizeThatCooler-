@@ -10,9 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class NotesAdapter (private var notes: List<Note>, context: Context) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
+class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerView.Adapter<ItemAdapter.NoteViewHolder>() {
 
-    private val db : NotesDatabaseHelper = NotesDatabaseHelper(context)
+    private val db : ItemDatabaseHelper = ItemDatabaseHelper(context)
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
@@ -27,12 +27,12 @@ class NotesAdapter (private var notes: List<Note>, context: Context) : RecyclerV
         return NoteViewHolder(view)
     }
 
-    override fun getItemCount(): Int = notes.size
+    override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val note = notes[position]
+        val note = items[position]
         holder.titleTextView.text = note.title
-        holder.contentTextView.text = note.content
+        holder.contentTextView.text = note.upc
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{
@@ -44,12 +44,12 @@ class NotesAdapter (private var notes: List<Note>, context: Context) : RecyclerV
         holder.deleteButton.setOnClickListener {
             db.deleteNote(note.id)
             refreshData(db.getAllNotes())
-            Toast.makeText(holder.itemView.context, "Note Delete", Toast.LENGTH_SHORT).show()
+            Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_SHORT).show()
         }
     }
 
-    fun refreshData(newNotes: List<Note>){
-        notes = newNotes
+    fun refreshData(newItems: List<Item>){
+        items = newItems
         notifyDataSetChanged()
     }
 

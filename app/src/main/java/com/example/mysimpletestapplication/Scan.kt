@@ -36,7 +36,7 @@ class Scan : AppCompatActivity() {
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        nextScreen(s, "hi")//Get rid of this to test the barcode scanner on your phone
+        //nextScreen(s, "hi")//Get rid of this to test the barcode scanner on your phone
         //-------------------
         var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
@@ -128,7 +128,7 @@ class Scan : AppCompatActivity() {
 
     private fun nextScreen(s: String, barcodeData: String?){
         if (s.compareTo("In").equals(0)){
-            Intent(this, AddNote::class.java ).also {
+            Intent(this, AddItem::class.java ).also {
                 val bundle1 = Bundle()
                 bundle1.putString("key1", barcodeData)
                 it.putExtras(bundle1)

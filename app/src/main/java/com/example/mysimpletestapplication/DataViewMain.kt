@@ -10,19 +10,19 @@ import com.example.mysimpletestapplication.databinding.ActivityDataViewMainBindi
 
 class DataViewMain : AppCompatActivity() {
     private lateinit var binding: ActivityDataViewMainBinding
-    private lateinit var db:NotesDatabaseHelper
-    private lateinit var notesAdapter: NotesAdapter
+    private lateinit var db:ItemDatabaseHelper
+    private lateinit var itemAdapter: ItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDataViewMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NotesDatabaseHelper(this)
-        notesAdapter = NotesAdapter(db.getAllNotes(), this)
+        db = ItemDatabaseHelper(this)
+        itemAdapter = ItemAdapter(db.getAllNotes(), this)
 
         binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.notesRecyclerView.adapter = notesAdapter
+        binding.notesRecyclerView.adapter = itemAdapter
 
 
 //        binding.addButton.setOnClickListener {
@@ -44,6 +44,6 @@ class DataViewMain : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        notesAdapter.refreshData(db.getAllNotes())
+        itemAdapter.refreshData(db.getAllNotes())
     }
 }
