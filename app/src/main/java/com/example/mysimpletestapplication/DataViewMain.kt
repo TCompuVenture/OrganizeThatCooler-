@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mysimpletestapplication.databinding.ActivityDataViewMainBinding
+import com.example.mysimpletestapplication.databinding.CoolerViewLayoutBinding
 
 class DataViewMain : AppCompatActivity() {
-    private lateinit var binding: ActivityDataViewMainBinding
+    private lateinit var binding: CoolerViewLayoutBinding
     private lateinit var db:ItemDatabaseHelper
     private lateinit var itemAdapter: ItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDataViewMainBinding.inflate(layoutInflater)
+        binding = CoolerViewLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         db = ItemDatabaseHelper(this)
