@@ -15,7 +15,7 @@ class ViewActivity2 : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view) //How you set what layout runs. Can prob. dump rest of this code.
+        setContentView(R.layout.activity_view_old_code_possibly_drop) //How you set what layout runs. Can prob. dump rest of this code.
         val extras = intent.extras
         val value: String?
         if (extras != null) {

@@ -18,7 +18,7 @@ public class CustomAdapter extends ArrayAdapter<Message>  {
     }
 
     public CustomAdapter(ArrayList<Message> data, Context context){
-        super(context, R.layout.row_item, data);
+        super(context, R.layout.row_item_old_possibly_drop, data);
         this.DataSet = data;
         this.mContext = context;
     }
@@ -32,7 +32,7 @@ public class CustomAdapter extends ArrayAdapter<Message>  {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            convertView = inflater.inflate(R.layout.row_item_old_possibly_drop, parent, false);
             viewHolder.txtMessage = (TextView) convertView.findViewById(R.id.row_msg);
         //    viewHolder.textTime = (TextView) convertView.findViewById(R.id.gps_textView);
             result = convertView;

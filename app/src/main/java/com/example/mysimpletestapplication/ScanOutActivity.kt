@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 class ScanOutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scan_out) //How you set what layout runs. Can prob. dump rest of this code.
+        setContentView(R.layout.activity_scan_out_complete) //How you set what layout runs. Can prob. dump rest of this code.
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         var textbox: TextView = findViewById(R.id.barcode2)

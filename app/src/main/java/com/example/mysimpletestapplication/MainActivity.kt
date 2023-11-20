@@ -1,20 +1,13 @@
 package com.example.mysimpletestapplication
 
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.activity.ComponentActivity
 import com.google.firebase.Firebase
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-import com.google.firebase.database.getValue
-import java.util.Date
 
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +15,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var myDB: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout) //How you set what layout runs. Can prob. dump rest of this code.
+        setContentView(R.layout.home_screen) //How you set what layout runs. Can prob. dump rest of this code.
         var toView: Button = findViewById<Button>(R.id.toView)
         var toScanIn: Button = findViewById<Button>(R.id.toScanIn)
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)

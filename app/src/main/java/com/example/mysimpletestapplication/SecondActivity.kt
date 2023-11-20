@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_second) //How you set what layout runs. Can prob. dump rest of this code.
+        setContentView(R.layout.activity_second_old_code_possibly_drop) //How you set what layout runs. Can prob. dump rest of this code.
 
         val bundle = intent.extras
         var textBox: TextView = findViewById<TextView>(R.id.textView2)
