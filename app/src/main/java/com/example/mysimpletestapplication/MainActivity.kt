@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
        // val key = myDB.child("message").push().key
 
         toView.setOnClickListener {
+            // TODO: Do we remeove this edited code?
            // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
           //  textView.text = "What hath you done?"
             Intent(this, DataViewMain::class.java).also {
@@ -58,6 +59,7 @@ class MainActivity : ComponentActivity() {
             Intent(this, Scan::class.java).also {
                 var bundle2 = Bundle()
                 bundle2.putString("key1", "In")
+                //passing in a bundle to tell the Scan screen which screen to go after scanning a barcode
                 it.putExtras(bundle2)
                 startActivity(it)
             }
@@ -72,6 +74,7 @@ class MainActivity : ComponentActivity() {
             Intent(this, Scan::class.java).also {
                 var bundle1 = Bundle()
                 bundle1.putString("key1", "Out")
+                //passing in a bundle to tell the Scan screen which screen to go after scanning a barcode
                 it.putExtras(bundle1)
                 startActivity(it)
             }

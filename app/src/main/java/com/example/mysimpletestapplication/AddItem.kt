@@ -48,13 +48,25 @@ class AddItem : AppCompatActivity() {
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val content = binding.contentEditText.text.toString()
-            val item = Item(0, title, content, 1) //Passing in dummy value for qty @ moment. To be implemented en la futura...
-            db.insertItem(item)
-            Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
-            Intent(this, ScanInActivity::class.java).also {
-                startActivity(it)
+            if(quantity != 0) {
+
+                val item = Item(
+                    0,
+                    title,
+                    content,
+                    quantity
+                ) //Passing in dummy value for qty @ moment. To be implemented en la futura...
+                db.insertItem(item)
+                Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
+                Intent(this, ScanInActivity::class.java).also {
+                    startActivity(it)
+                }
+                finish()
             }
-            finish()
+            else {
+                Toast.makeText(this, "It is impossible to add a new item with a quantity of 0!", Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 }
