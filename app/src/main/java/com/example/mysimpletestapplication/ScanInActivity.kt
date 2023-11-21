@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
+// This Activity will be used as a completion screen after the user has added an item to the fridge/freezer
 class ScanInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +18,11 @@ class ScanInActivity : AppCompatActivity() {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
                 buttonHasBeenClicked = true
-            } //Before also: defines an instance of an intent in context of our second activity
-            //Also refers to previous context
+            }
         }
+        //This begins a timer that after a specified time in ms it will return to the menu
+        //boolean variable was added so as to not return to the menu after the user has already hit the button back to the men
         object : CountDownTimer(3000, 1000) {
-
             override fun onTick(millisUntilFinished: Long) {
 
             }
