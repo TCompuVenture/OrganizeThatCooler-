@@ -19,7 +19,8 @@ import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import java.io.IOException
 
-
+//This Activity utilizes the Camera of the User's device to read a barcode
+//The User will use this to log items that they are adding or removing from their fridge/freezer
 class Scan : AppCompatActivity() {
     private var surfaceView: SurfaceView? = null
     private var barcodeDetector: BarcodeDetector? = null
@@ -32,7 +33,7 @@ class Scan : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scan) //How you set what layout runs. Can prob. dump rest of this code.
+        setContentView(R.layout.activity_scan)
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
@@ -51,9 +52,8 @@ class Scan : AppCompatActivity() {
         barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
         initialiseDetectorsAndSources(s, textBox)
     }
+    //This function is the code for the Barcode Scanner
     private fun initialiseDetectorsAndSources(s: String,textBox: TextView) {
-
-        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
         barcodeDetector = BarcodeDetector.Builder(this)
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
@@ -125,7 +125,7 @@ class Scan : AppCompatActivity() {
             }
         })
     }
-
+    //This function loads the next activity based on which screen the bundle says to go to
     private fun nextScreen(s: String, barcodeData: String?){
         if (s.compareTo("In").equals(0)){
             Intent(this, AddItem::class.java ).also {
