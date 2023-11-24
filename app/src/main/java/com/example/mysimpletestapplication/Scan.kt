@@ -134,27 +134,23 @@ class Scan : AppCompatActivity() {
     }
     //This function loads the next activity based on which screen the bundle says to go to
     private fun nextScreen(s: String, barcodeData: String?){
-        var rawUPC : String = "0";
+
+        var rawUPC : String = "0"; //Declared here with a 0 so that we don't acidentally end up with a null value down the line if the barcode is not scanned correctly.
         if(barcodeData != null)
         {
-            var rawUPC = barcodeData;
-
+            rawUPC = barcodeData;
         }
-        else
-        {
-            rawUPC = "0"
-        }
-        var UPC = rawUPC.toInt() //This line keeps throwing a NumberFormatException. Why???????
+//        else if(barcodeData == null)
+//        {
+//            rawUPC = "0"
+//        }
+        var UPC = rawUPC.toLong() //MUST BE A LONG - doesn't fit into an int!
 
-        /*********************
-         *
-         * THis is the error line!
-         ********************/
-        val item = UPC.let { db.getNoteByUPC(it) } //What is the it doing here?
+        val item = UPC.let { db.getNoteByUPC(UPC) }
 
-        if (item != null && UPC != 0) {
-            if(item.upc < 0) {
-                if (s.compareTo("In").equals(0)) { //adds !! to fix error. Hope not a problem :)
+        if (item.upc != -1 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
+            if (item.upc < 0) {
+                if (s.compareTo("In").equals(0)) {
                     Intent(this, AddItem::class.java).also {
                         Toast.makeText(
                             this,
@@ -177,23 +173,33 @@ class Scan : AppCompatActivity() {
                 }
 
             }
-            else if (UPC == 0)
-            {
-                Toast.makeText(
-                    this,
-                    "Error reading bar code.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        }
+        else if (UPC == 0.toLong())
+        {
+            Toast.makeText(
+                this,
+                "Error reading bar code.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
-            else
-            {
-                Intent(this, UpdateActivity::class.java).also {
-                    val bundle1 = Bundle()
-                    bundle1.putString("key1", barcodeData)
-                    it.putExtras(bundle1)
-                    startActivity(it)
-                }
+        else
+        {
+            Toast.makeText(
+                this,
+                "Heeeere! " + UPC,
+                Toast.LENGTH_SHORT
+            ).show()
+
+            /******************************************
+            This is the last thing to figure out!!! Why isn't this activity launching? All of the logic is correct...
+             ******************************************************8*/
+            Intent(this, UpdateActivity::class.java).also {
+                val bundle1 = Bundle()
+                bundle1.putString("key1", barcodeData)
+                it.putExtras(bundle1)
+                startActivity(it)
+            }
 
     //            if (s.compareTo("In").equals(0)){ //adds !! to fix error. Hope not a problem :)
     //                Intent(this, AddItem::class.java ).also {
@@ -215,4 +221,4 @@ class Scan : AppCompatActivity() {
             }
         }
 
-}}
+}

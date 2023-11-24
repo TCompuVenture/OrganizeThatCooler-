@@ -89,18 +89,31 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         return Item(id, title, upc, qty) //Passing in dummy qty for now
     }
     @SuppressLint("Range") //Ignoring the fact that .getColumnIndex can return a negative value
-    fun getNoteByUPC(upc: Int): Item{
+    fun getNoteByUPC(upc: Long): Item{
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $upc"
         val cursor = db.rawQuery(query, null)
         cursor.moveToFirst()
-        val id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID)) //Must be getColumnIndex so it will throw a -1 if not found. But how make it be OK with a negative 1 coming back?
-        val title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE))
-        val upc = cursor.getInt(cursor.getColumnIndex(COLUMN_CONTENT))
-        //val upc = "-1"
-        val qty = cursor.getInt(cursor.getColumnIndex(COLUMN_CONTENT))
 
-        cursor.close()
+        //If nothing found in DB, -1 for everything will be returned
+        var id = -1;
+        var title = "-1";
+        var upc = -1;
+        var qty = -1;
+
+        if(cursor != null && cursor.moveToFirst()){ //So if we find something in the DB, return it
+            id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)) //Must be getColumnIndex so it will throw a -1 if not found. But how make it be OK with a negative 1 coming back?
+            title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
+            upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            cursor.close();
+        }
+        else
+        {
+
+        }
+       // cursor.close()
+
         db.close()
         return Item(id, title, upc, qty) //Passing in dummy qty for now
     }
