@@ -47,13 +47,14 @@ class AddItem : AppCompatActivity() {
 
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
-            val content = binding.contentEditText.text.toString()
+            val upcTemp = binding.contentEditText.text.toString()
+            val upc: Int = Integer.parseInt(upcTemp)
             if(quantity != 0) {
 
                 val item = Item(
                     0,
                     title,
-                    content,
+                    upc,
                     quantity
                 ) //Passing in dummy value for qty @ moment. To be implemented en la futura...
                 db.insertItem(item)

@@ -10,6 +10,7 @@ import android.view.SurfaceView
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.vision.CameraSource
@@ -30,15 +31,21 @@ class Scan : AppCompatActivity() {
     private var barcodeText: TextView? = null
     private var barcodeData: String? = null
     private var foundBarcode = false
+    private lateinit var db: ItemDatabaseHelper
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
         val bundle = intent.extras
+        db = ItemDatabaseHelper(this)
+
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        //nextScreen(s, "hi")//Get rid of this to test the barcode scanner on your phone
+        //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
+
+
         var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
         toMenu.setOnClickListener {
@@ -127,22 +134,60 @@ class Scan : AppCompatActivity() {
     }
     //This function loads the next activity based on which screen the bundle says to go to
     private fun nextScreen(s: String, barcodeData: String?){
-        if (s.compareTo("In").equals(0)){
-            Intent(this, AddItem::class.java ).also {
-                val bundle1 = Bundle()
-                bundle1.putString("key1", barcodeData)
-                it.putExtras(bundle1)
-                startActivity(it)
-            }
-        }
-        if (s.compareTo("Out") == 0){
-            Intent(this, ScanOutActivity::class.java).also {
-                val bundle2 = Bundle()
-                bundle2.putString("key1", barcodeData)
-                it.putExtras(bundle2)
-                startActivity(it)
-            }
-        }
-    }
+        var rawUPC = barcodeData;
+        var UPC = rawUPC?.toInt() //This line keeps throwing a NumberFormatException. Why???????
+        val item = UPC?.let { db.getNoteByUPC(it) } //!!=non-null asserted
 
-}
+        if (item != null) {
+            if(item.upc < 0) {
+                if (s.compareTo("In").equals(0)) { //adds !! to fix error. Hope not a problem :)
+                    Intent(this, AddItem::class.java).also {
+                        Toast.makeText(
+                            this,
+                            "Headed to AddItem!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val bundle1 = Bundle()
+                        bundle1.putString("key1", barcodeData)
+                        it.putExtras(bundle1)
+                        startActivity(it)
+                    }
+                }
+
+                if (s.compareTo("Out").equals(0)) { //adds !! to fix error. Hope not a problem :)
+                    Toast.makeText(
+                        this,
+                        "It is impossible to scan something in that does not exist, sir!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            } else {
+                Intent(this, UpdateActivity::class.java).also {
+                    val bundle1 = Bundle()
+                    bundle1.putString("key1", barcodeData)
+                    it.putExtras(bundle1)
+                    startActivity(it)
+                }
+
+    //            if (s.compareTo("In").equals(0)){ //adds !! to fix error. Hope not a problem :)
+    //                Intent(this, AddItem::class.java ).also {
+    //                    val bundle1 = Bundle()
+    //                    bundle1.putString("key1", barcodeData)
+    //                    it.putExtras(bundle1)
+    //                    startActivity(it)
+    //                }
+    //
+    //            if (s.compareTo("Out").equals(0)){ //adds !! to fix error. Hope not a problem :)
+    //                Intent(this, ScanOutActivity::class.java ).also {
+    //                    val bundle2 = Bundle()
+    //                    bundle2.putString("key1", barcodeData)
+    //                    it.putExtras(bundle2)
+    //                    startActivity(it)
+    //                }
+    //
+    //
+            }
+        }
+
+}}

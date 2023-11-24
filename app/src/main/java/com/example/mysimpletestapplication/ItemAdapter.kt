@@ -32,7 +32,7 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = items[position]
         holder.titleTextView.text = note.title
-        holder.contentTextView.text = note.upc
+        holder.contentTextView.text = note.upc.toString()
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{

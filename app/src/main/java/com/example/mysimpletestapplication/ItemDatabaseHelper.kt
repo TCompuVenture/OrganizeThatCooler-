@@ -1,5 +1,6 @@
 package com.example.mysimpletestapplication
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -47,9 +48,9 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         while(cursor.moveToNext()){
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-
-            val item = Item(id, title, content, 1) //Passing in dummy qty for now
+            val upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            val item = Item(id, title, upc, qty) //Passing in dummy qty for now
             notesList.add(item)
         }
         cursor.close()
@@ -78,11 +79,30 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
 
         val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
         val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-        val content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+
+        //remember to add val upc here!
 
         cursor.close()
         db.close()
-        return Item(id, title, content, 1) //Passing in dummy qty for now
+        return Item(id, title, upc, qty) //Passing in dummy qty for now
+    }
+    @SuppressLint("Range") //Ignoring the fact that .getColumnIndex can return a negative value
+    fun getNoteByUPC(upc: Int): Item{
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $upc"
+        val cursor = db.rawQuery(query, null)
+        cursor.moveToFirst()
+        val id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID)) //Must be getColumnIndex so it will throw a -1 if not found. But how make it be OK with a negative 1 coming back?
+        val title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE))
+        val upc = cursor.getInt(cursor.getColumnIndex(COLUMN_CONTENT))
+        //val upc = "-1"
+        val qty = cursor.getInt(cursor.getColumnIndex(COLUMN_CONTENT))
+
+        cursor.close()
+        db.close()
+        return Item(id, title, upc, qty) //Passing in dummy qty for now
     }
 
     fun deleteItem(noteId: Int){
