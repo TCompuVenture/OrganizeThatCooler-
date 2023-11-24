@@ -134,11 +134,25 @@ class Scan : AppCompatActivity() {
     }
     //This function loads the next activity based on which screen the bundle says to go to
     private fun nextScreen(s: String, barcodeData: String?){
-        var rawUPC = barcodeData;
-        var UPC = rawUPC?.toInt() //This line keeps throwing a NumberFormatException. Why???????
-        val item = UPC?.let { db.getNoteByUPC(it) } //!!=non-null asserted
+        var rawUPC : String = "0";
+        if(barcodeData != null)
+        {
+            var rawUPC = barcodeData;
 
-        if (item != null) {
+        }
+        else
+        {
+            rawUPC = "0"
+        }
+        var UPC = rawUPC.toInt() //This line keeps throwing a NumberFormatException. Why???????
+
+        /*********************
+         *
+         * THis is the error line!
+         ********************/
+        val item = UPC.let { db.getNoteByUPC(it) } //What is the it doing here?
+
+        if (item != null && UPC != 0) {
             if(item.upc < 0) {
                 if (s.compareTo("In").equals(0)) { //adds !! to fix error. Hope not a problem :)
                     Intent(this, AddItem::class.java).also {
@@ -162,7 +176,18 @@ class Scan : AppCompatActivity() {
                     ).show()
                 }
 
-            } else {
+            }
+            else if (UPC == 0)
+            {
+                Toast.makeText(
+                    this,
+                    "Error reading bar code.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            else
+            {
                 Intent(this, UpdateActivity::class.java).also {
                     val bundle1 = Bundle()
                     bundle1.putString("key1", barcodeData)
