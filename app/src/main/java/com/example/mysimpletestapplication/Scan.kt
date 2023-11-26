@@ -123,6 +123,7 @@ class Scan : AppCompatActivity() {
                             barcodeText?.text = barcodeData
                             toneGen1!!.startTone(ToneGenerator.TONE_CDMA_PIP, 150)
                             nextScreen(s, barcodeData)
+
                             foundBarcode = true
                             return@post
                         }
@@ -148,15 +149,17 @@ class Scan : AppCompatActivity() {
 
         val item = UPC.let { db.getNoteByUPC(UPC) }
 
+        //The problem with this is I am using intent wrong. Why can I use it this way on MainActivity but not here? Also: Why no error?
+
         if (item.upc != -1 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
-            if (item.upc < 0) {
+            if (item.upc > 0) {
                 if (s.compareTo("In").equals(0)) {
+                    Toast.makeText(
+                        this,
+                        "Headed to update item!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Intent(this, AddItem::class.java).also {
-                        Toast.makeText(
-                            this,
-                            "Headed to AddItem!",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         val bundle1 = Bundle()
                         bundle1.putString("key1", barcodeData)
                         it.putExtras(bundle1)
@@ -164,7 +167,7 @@ class Scan : AppCompatActivity() {
                     }
                 }
 
-                if (s.compareTo("Out").equals(0)) { //adds !! to fix error. Hope not a problem :)
+                if (s.compareTo("Out").equals(0)) {
                     Toast.makeText(
                         this,
                         "It is impossible to scan something in that does not exist, sir!",
@@ -181,44 +184,76 @@ class Scan : AppCompatActivity() {
                 "Error reading bar code.",
                 Toast.LENGTH_SHORT
             ).show()
+            //Prob. should restart scan screen at this point.
         }
 
         else
         {
             Toast.makeText(
                 this,
-                "Heeeere! " + UPC,
+                "Headed to add an item! " + UPC,
                 Toast.LENGTH_SHORT
             ).show()
 
             /******************************************
             This is the last thing to figure out!!! Why isn't this activity launching? All of the logic is correct...
              ******************************************************8*/
-            Intent(this, UpdateActivity::class.java).also {
-                val bundle1 = Bundle()
-                bundle1.putString("key1", barcodeData)
-                it.putExtras(bundle1)
-                startActivity(it)
-            }
+            var testButton: Button = findViewById(R.id.testing)
 
-    //            if (s.compareTo("In").equals(0)){ //adds !! to fix error. Hope not a problem :)
-    //                Intent(this, AddItem::class.java ).also {
-    //                    val bundle1 = Bundle()
-    //                    bundle1.putString("key1", barcodeData)
-    //                    it.putExtras(bundle1)
-    //                    startActivity(it)
-    //                }
-    //
-    //            if (s.compareTo("Out").equals(0)){ //adds !! to fix error. Hope not a problem :)
-    //                Intent(this, ScanOutActivity::class.java ).also {
-    //                    val bundle2 = Bundle()
-    //                    bundle2.putString("key1", barcodeData)
-    //                    it.putExtras(bundle2)
-    //                    startActivity(it)
-    //                }
-    //
-    //
+            testButton.setOnClickListener {
+                try {
+                    Toast.makeText(
+                        this,
+                        "Button was clicked",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Intent(this, AddItem::class.java).also {
+                        val bundle1 = Bundle()
+                        bundle1.putString("key1", barcodeData)
+                        it.putExtras(bundle1)
+                        startActivity(it)
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        this,
+                        "Error launching UpdateActivity: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    e.printStackTrace()
+                }
+           }
+
+//            testButton.performClick()
+//            val intent = Intent(this, UpdateActivity::class.java)
+//            val bundle1 = Bundle()
+//            bundle1.putString("key1", barcodeData)
+//            intent.putExtras(bundle1)
+//            startActivity(intent)
+//            Toast.makeText(
+//                this,
+//                "Now past where the activity was supposed to be started" + UPC,
+//                Toast.LENGTH_SHORT
+//            ).show()
+
             }
-        }
+        return
+    }
 
 }
+//            if (s.compareTo("In").equals(0)){ //adds !! to fix error. Hope not a problem :)
+//                Intent(this, AddItem::class.java ).also {
+//                    val bundle1 = Bundle()
+//                    bundle1.putString("key1", barcodeData)
+//                    it.putExtras(bundle1)
+//                    startActivity(it)
+//                }
+//
+//            if (s.compareTo("Out").equals(0)){ //adds !! to fix error. Hope not a problem :)
+//                Intent(this, ScanOutActivity::class.java ).also {
+//                    val bundle2 = Bundle()
+//                    bundle2.putString("key1", barcodeData)
+//                    it.putExtras(bundle2)
+//                    startActivity(it)
+//                }
+//
+//

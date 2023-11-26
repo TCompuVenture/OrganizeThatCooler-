@@ -47,10 +47,11 @@ class MainActivity : ComponentActivity() {
        // val key = myDB.child("message").push().key
 
         toView.setOnClickListener {
-            // TODO: Do we remeove this edited code?
+            // TODO: Do we remove this edited code?
            // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
           //  textView.text = "What hath you done?"
             Intent(this, DataViewMain::class.java).also {
+
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
         }       //Also refers to previous context
