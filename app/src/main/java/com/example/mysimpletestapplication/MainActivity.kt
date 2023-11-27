@@ -19,13 +19,22 @@ class MainActivity : ComponentActivity() {
         var toView: Button = findViewById<Button>(R.id.toView)
         var toScanIn: Button = findViewById<Button>(R.id.toScanIn)
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
-       //TODO: Remove - Old code for testing!
+
+        toView.setOnClickListener {
+            Intent(this, DataViewMain::class.java).also {//Hijacked. Was DataViewMain
+
+
+                startActivity(it)
+            } //Before also: defines an instance of an intent in context of our second activity
+        }       //Also refers to previous context
+
+        //TODO: Remove - Old code for testing!
         // var test: Button = findViewById<Button>(R.id.passBundle)
-       // var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
+        // var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
 
 
         //ACTUALLY creates the instance of our database worker thingy
-        myDB = Firebase.database.reference
+        //myDB = Firebase.database.reference
 
         //returns you a new key for your new object!
 
@@ -44,18 +53,7 @@ class MainActivity : ComponentActivity() {
 //            var msg = snapshot[key]
 //        }
 
-       // val key = myDB.child("message").push().key
-
-        toView.setOnClickListener {
-            // TODO: Do we remove this edited code?
-           // var textView: TextView = findViewById<TextView>(R.id.GPS_x_TextView)
-          //  textView.text = "What hath you done?"
-            Intent(this, DataViewMain::class.java).also {
-
-                startActivity(it)
-            } //Before also: defines an instance of an intent in context of our second activity
-        }       //Also refers to previous context
-
+        // val key = myDB.child("message").push().key
         toScanIn.setOnClickListener{
             Intent(this, Scan::class.java).also {
                 var bundle2 = Bundle()

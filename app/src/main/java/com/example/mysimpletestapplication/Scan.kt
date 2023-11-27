@@ -198,15 +198,13 @@ class Scan : AppCompatActivity() {
             /******************************************
             This is the last thing to figure out!!! Why isn't this activity launching? All of the logic is correct...
              ******************************************************8*/
-            var testButton: Button = findViewById(R.id.testing)
 
-            testButton.setOnClickListener {
                 try {
-                    Toast.makeText(
+                    /*Toast.makeText(
                         this,
                         "Button was clicked",
                         Toast.LENGTH_SHORT
-                    ).show()
+                    ).show()*/
                     Intent(this, AddItem::class.java).also {
                         val bundle1 = Bundle()
                         bundle1.putString("key1", barcodeData)
@@ -221,9 +219,7 @@ class Scan : AppCompatActivity() {
                     ).show()
                     e.printStackTrace()
                 }
-           }
 
-//            testButton.performClick()
 //            val intent = Intent(this, UpdateActivity::class.java)
 //            val bundle1 = Bundle()
 //            bundle1.putString("key1", barcodeData)

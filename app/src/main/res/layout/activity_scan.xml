@@ -46,13 +46,5 @@
         android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/surface_view" />
 
-    <Button
-        android:id="@+id/testing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="152dp"
-        tools:layout_editor_absoluteY="505dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
