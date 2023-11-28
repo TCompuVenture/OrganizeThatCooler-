@@ -43,12 +43,12 @@ class AddItem : AppCompatActivity() {
 
 
         //TODO: Warn user when saving an item with quantity 0
-        //TODO: Fix this dang thing
+
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val upcTemp = binding.contentEditText.text.toString()
             val upc: Int = Integer.parseInt(upcTemp)
-            if(quantity != 0) { //Because you can't add an item with quantity 0
+            if(quantity != 0) {
 
                 val item = Item(
                     0, //probably should auto-increment this!!!
@@ -61,7 +61,7 @@ class AddItem : AppCompatActivity() {
                 Intent(this, ScanComplete::class.java).also {
                     startActivity(it)
                 }
-                    finish()
+                finish()
             }
             else {
                 Toast.makeText(this, "It is impossible to add a new item with a quantity of 0!", Toast.LENGTH_SHORT).show()

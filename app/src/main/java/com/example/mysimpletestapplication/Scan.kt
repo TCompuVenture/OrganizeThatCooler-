@@ -37,37 +37,40 @@ class Scan : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
-        val bundle = intent.extras
         db = ItemDatabaseHelper(this)
-
+        toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
+        surfaceView = findViewById<View>(R.id.surface_view) as SurfaceView?
+        barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
+        var textBox: TextView = findViewById(R.id.InorOut)
+        val toMenu: Button = findViewById(R.id.toMenu)
+        val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
         //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
-
-
-       // var textBox: TextView = findViewById(R.id.InorOut)
-        val toMenu: Button = findViewById(R.id.toMenu)
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
             //Also refers to previous context
         }
-        toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
-        surfaceView = findViewById<View>(R.id.surface_view) as SurfaceView?
-        barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
+        //Calls function to start Barcode Scanner
         initialiseDetectorsAndSources(s)
     }
     //This function is the code for the Barcode Scanner
+    //It takes in a string which was retrieved from the bundle passed in form MainActivity
+    //It passes this string into the nextScreen() function when it calls it
     private fun initialiseDetectorsAndSources(s: String) {
+        //Initializing and building barcodeDetector
         barcodeDetector = BarcodeDetector.Builder(this)
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
+        //Initializing and building the cameraSource
         cameraSource = CameraSource.Builder(this, barcodeDetector)
             .setRequestedPreviewSize(1920, 1080)
             .setAutoFocusEnabled(true) //you should add this feature
             .build()
+        //Sets surfaceView to the camera
         surfaceView!!.holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
                 try {
@@ -144,7 +147,9 @@ class Scan : AppCompatActivity() {
         var UPC = rawUPC.toLong() //MUST BE A LONG - doesn't fit into an int!
         val item = UPC.let { db.getNoteByUPC(UPC) }
 
-        if (item.upc != -1 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
+        //The problem with this is I am using intent wrong. Why can I use it this way on MainActivity but not here? Also: Why no error?
+
+        if (item.upc != -1L && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
             if (item.upc > 0) {
                 if (s.compareTo("In").equals(0)) {
                     Toast.makeText(

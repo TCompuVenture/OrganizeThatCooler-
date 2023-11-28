@@ -26,12 +26,12 @@ class UpdateActivity : AppCompatActivity() {
 
         val note = db.getNoteByID(noteId)
         binding.updateTitleEditText.setText(note.title)
-        binding.updateContentEditText.setText(note.upc)
+        binding.updateContentEditText.setText(note.upc.toString())
 
         binding.updateSaveButton.setOnClickListener {
             val newTitle = binding.updateTitleEditText.text.toString()
             val newUPCtemp = binding.updateContentEditText.text.toString()
-            val newUPC = newUPCtemp.toInt()
+            val newUPC = newUPCtemp.toLong()
             val updateItem = Item(noteId, newTitle, newUPC, 1) //Passing default value for now
             db.updateItem(updateItem)
             finish()

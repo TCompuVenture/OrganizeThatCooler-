@@ -48,7 +48,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         while(cursor.moveToNext()){
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            val upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             val item = Item(id, title, upc, qty) //Passing in dummy qty for now
             notesList.add(item)
@@ -79,7 +79,8 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
 
         val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
         val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-        val upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        //val upc = cursor.getColumnIndexOrThrow(COLUMN_CONTENT)
         val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
 
         //remember to add val upc here!
@@ -98,13 +99,13 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         //If nothing found in DB, -1 for everything will be returned
         var id = -1;
         var title = "-1";
-        var upc = -1;
+        var upc = -1L;
         var qty = -1;
 
         if(cursor != null && cursor.moveToFirst()){ //So if we find something in the DB, return it
             id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)) //Must be getColumnIndex so it will throw a -1 if not found. But how make it be OK with a negative 1 coming back?
             title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            upc = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             cursor.close();
         }
