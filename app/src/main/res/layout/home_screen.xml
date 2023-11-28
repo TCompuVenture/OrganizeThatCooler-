@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="207dp"
-        app:srcCompat="@drawable/image" />
+        android:layout_height="250dp"
+        app:srcCompat="@drawable/fridge_icon" />
 
     <Button
         android:id="@+id/toView"
