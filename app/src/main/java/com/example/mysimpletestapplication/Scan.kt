@@ -45,7 +45,7 @@ class Scan : AppCompatActivity() {
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
+        nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
@@ -72,6 +72,7 @@ class Scan : AppCompatActivity() {
         //Sets surfaceView to the camera
         surfaceView!!.holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
+                //This try attempts to get permission for access to the camera before setting the cameraSource
                 try {
                     if (ActivityCompat.checkSelfPermission(
                             this@Scan,
@@ -90,7 +91,7 @@ class Scan : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
-
+            //Keeps the Surface View updated
             override fun surfaceChanged(
                 holder: SurfaceHolder,
                 format: Int,
@@ -98,16 +99,18 @@ class Scan : AppCompatActivity() {
                 height: Int
             ) {
             }
-
+            //stops the cameraSource
             override fun surfaceDestroyed(holder: SurfaceHolder) {
                 cameraSource?.stop()
             }
         })
+        //this runs the barcodeDetectors process
         barcodeDetector?.setProcessor(object : Detector.Processor<Barcode> {
             override fun release() {
                 // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
-
+            //this function detects if a barcode can be found in the view of the Camera and if so it retrieves The UPC for the item from that.
+            //After it gets the UPC it then calls the function nextScreen and passes in the barcodeData and immediately ends itself.
             override fun receiveDetections(detections: Detections<Barcode>) {
                 val barcodes = detections.detectedItems
 
