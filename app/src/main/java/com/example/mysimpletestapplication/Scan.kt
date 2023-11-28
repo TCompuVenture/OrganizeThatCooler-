@@ -41,12 +41,11 @@ class Scan : AppCompatActivity() {
         toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         surfaceView = findViewById<View>(R.id.surface_view) as SurfaceView?
         barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
-        var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
+        nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {

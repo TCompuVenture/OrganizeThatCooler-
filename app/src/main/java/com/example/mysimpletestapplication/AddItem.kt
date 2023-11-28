@@ -47,7 +47,7 @@ class AddItem : AppCompatActivity() {
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val upcTemp = binding.contentEditText.text.toString()
-            val upc: Int = Integer.parseInt(upcTemp)
+            val upc: Long = upcTemp.toLong()
             if(quantity != 0) {
 
                 val item = Item(

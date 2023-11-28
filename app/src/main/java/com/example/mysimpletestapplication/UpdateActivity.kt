@@ -3,17 +3,17 @@ package com.example.mysimpletestapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.mysimpletestapplication.databinding.UpdateItemBinding
+import com.example.mysimpletestapplication.databinding.UpdateItemOldDropBinding
 
 class UpdateActivity : AppCompatActivity() {
 
-    private lateinit var binding: UpdateItemBinding
+    private lateinit var binding: UpdateItemOldDropBinding
     private lateinit var db: ItemDatabaseHelper
     private var noteId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = UpdateItemBinding.inflate(layoutInflater)
+        binding = UpdateItemOldDropBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         db = ItemDatabaseHelper(this)
