@@ -46,7 +46,7 @@ class Scan : AppCompatActivity() {
         //-------------------
 
 
-        var textBox: TextView = findViewById(R.id.InorOut)
+       // var textBox: TextView = findViewById(R.id.InorOut)
         val toMenu: Button = findViewById(R.id.toMenu)
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
@@ -57,10 +57,10 @@ class Scan : AppCompatActivity() {
         toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         surfaceView = findViewById<View>(R.id.surface_view) as SurfaceView?
         barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
-        initialiseDetectorsAndSources(s, textBox)
+        initialiseDetectorsAndSources(s)
     }
     //This function is the code for the Barcode Scanner
-    private fun initialiseDetectorsAndSources(s: String,textBox: TextView) {
+    private fun initialiseDetectorsAndSources(s: String) {
         barcodeDetector = BarcodeDetector.Builder(this)
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
@@ -141,15 +141,8 @@ class Scan : AppCompatActivity() {
         {
             rawUPC = barcodeData;
         }
-//        else if(barcodeData == null)
-//        {
-//            rawUPC = "0"
-//        }
         var UPC = rawUPC.toLong() //MUST BE A LONG - doesn't fit into an int!
-
         val item = UPC.let { db.getNoteByUPC(UPC) }
-
-        //The problem with this is I am using intent wrong. Why can I use it this way on MainActivity but not here? Also: Why no error?
 
         if (item.upc != -1 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
             if (item.upc > 0) {
@@ -196,15 +189,10 @@ class Scan : AppCompatActivity() {
             ).show()
 
             /******************************************
-            This is the last thing to figure out!!! Why isn't this activity launching? All of the logic is correct...
-             ******************************************************8*/
+            This would not work until I showed it to Blade...
+             *******************************************************/
 
                 try {
-                    /*Toast.makeText(
-                        this,
-                        "Button was clicked",
-                        Toast.LENGTH_SHORT
-                    ).show()*/
                     Intent(this, AddItem::class.java).also {
                         val bundle1 = Bundle()
                         bundle1.putString("key1", barcodeData)
@@ -219,37 +207,8 @@ class Scan : AppCompatActivity() {
                     ).show()
                     e.printStackTrace()
                 }
-
-//            val intent = Intent(this, UpdateActivity::class.java)
-//            val bundle1 = Bundle()
-//            bundle1.putString("key1", barcodeData)
-//            intent.putExtras(bundle1)
-//            startActivity(intent)
-//            Toast.makeText(
-//                this,
-//                "Now past where the activity was supposed to be started" + UPC,
-//                Toast.LENGTH_SHORT
-//            ).show()
-
             }
         return
     }
 
 }
-//            if (s.compareTo("In").equals(0)){ //adds !! to fix error. Hope not a problem :)
-//                Intent(this, AddItem::class.java ).also {
-//                    val bundle1 = Bundle()
-//                    bundle1.putString("key1", barcodeData)
-//                    it.putExtras(bundle1)
-//                    startActivity(it)
-//                }
-//
-//            if (s.compareTo("Out").equals(0)){ //adds !! to fix error. Hope not a problem :)
-//                Intent(this, ScanOutActivity::class.java ).also {
-//                    val bundle2 = Bundle()
-//                    bundle2.putString("key1", barcodeData)
-//                    it.putExtras(bundle2)
-//                    startActivity(it)
-//                }
-//
-//

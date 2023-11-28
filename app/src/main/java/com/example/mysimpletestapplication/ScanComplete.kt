@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 // This Activity will be used as a completion screen after the user has added an item to the fridge/freezer
-class ScanInActivity : AppCompatActivity() {
+class ScanComplete : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var buttonHasBeenClicked = false

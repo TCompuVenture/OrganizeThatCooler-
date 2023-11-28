@@ -36,11 +36,9 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".SecondActivity" />
         <activity android:name=".Scan" />
-        <activity android:name=".ScanInActivity" />
-        <activity android:name=".ScanOutActivity" />
-        <activity android:name=".ViewActivity2" />
+        <activity android:name=".ScanComplete" />
+        <activity android:name=".ScanOutActivity_Refactor_And_Drop" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

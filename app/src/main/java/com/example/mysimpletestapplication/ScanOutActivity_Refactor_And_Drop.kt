@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-class ScanOutActivity : AppCompatActivity() {
+class ScanOutActivity_Refactor_And_Drop : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_out_complete) //How you set what layout runs. Can prob. dump rest of this code.

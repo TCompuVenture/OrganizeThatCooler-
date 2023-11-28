@@ -19,9 +19,8 @@ class AddItem : AppCompatActivity() {
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         val UPCText : TextView = findViewById<TextView>(R.id.contentEditText)
-        UPCText.text = s
+        UPCText.text = s //Getting UPC from bundle
         db = ItemDatabaseHelper(this)
-
         //For quantity buttons
         var quantity: Int = 0;
         val qtyTextBox : TextView = findViewById<TextView>(R.id.quantityTextBox)
@@ -44,25 +43,25 @@ class AddItem : AppCompatActivity() {
 
 
         //TODO: Warn user when saving an item with quantity 0
-
+        //TODO: Fix this dang thing
         binding.saveButton.setOnClickListener {
             val title = binding.titleEditText.text.toString()
             val upcTemp = binding.contentEditText.text.toString()
             val upc: Int = Integer.parseInt(upcTemp)
-            if(quantity != 0) {
+            if(quantity != 0) { //Because you can't add an item with quantity 0
 
                 val item = Item(
-                    0,
+                    0, //probably should auto-increment this!!!
                     title,
                     upc,
                     quantity
-                ) //Passing in dummy value for qty @ moment. To be implemented en la futura...
+                )
                 db.insertItem(item)
                 Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
-                Intent(this, ScanInActivity::class.java).also {
+                Intent(this, ScanComplete::class.java).also {
                     startActivity(it)
                 }
-                finish()
+                    finish()
             }
             else {
                 Toast.makeText(this, "It is impossible to add a new item with a quantity of 0!", Toast.LENGTH_SHORT).show()

@@ -21,39 +21,11 @@ class MainActivity : ComponentActivity() {
         var toScanOut: Button = findViewById<Button>(R.id.toScanOut)
 
         toView.setOnClickListener {
-            Intent(this, DataViewMain::class.java).also {//Hijacked. Was DataViewMain
-
-
+            Intent(this, DataViewMain::class.java).also {
                 startActivity(it)
             } //Before also: defines an instance of an intent in context of our second activity
-        }       //Also refers to previous context
+        }       //Also refers to context of the Intent itself
 
-        //TODO: Remove - Old code for testing!
-        // var test: Button = findViewById<Button>(R.id.passBundle)
-        // var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
-
-
-        //ACTUALLY creates the instance of our database worker thingy
-        //myDB = Firebase.database.reference
-
-        //returns you a new key for your new object!
-
-        //To store a new item in the firebase
-        //1. get the table / entity / class
-        //database.child("classname")
-
-        //Grab everything with message tag and store it in the query object
-        //var query = myDB.child("message.orderByKey()")
-        //database.child("Message").child("longFancyKeyHere").child("text").setValue("my message")
-
-        //Need to use an event listener b/c we need to wait for the data
-        //Every snap (snapshot) is a .json object. --> it is the query result
-//        for (key in snapshot.key)
-//        {
-//            var msg = snapshot[key]
-//        }
-
-        // val key = myDB.child("message").push().key
         toScanIn.setOnClickListener{
             Intent(this, Scan::class.java).also {
                 var bundle2 = Bundle()
@@ -63,11 +35,6 @@ class MainActivity : ComponentActivity() {
                 startActivity(it)
             }
         }
-//        activity_date_view_main_access.setOnClickListener {
-//            Intent(this, DataViewMain::class.java).also {
-//                startActivity(it)
-//            }
-//        }
 
         toScanOut.setOnClickListener{
             Intent(this, Scan::class.java).also {
@@ -79,7 +46,38 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        //TODO: Remove this code! It was for testing Firebase / bundle passing. We don't need it anymore! Just kept in case we ever need to look back at it.
+
+    }
+}
+
+//TODO: Remove - Old code for testing!
+// var test: Button = findViewById<Button>(R.id.passBundle)
+// var pushToFirebase: Button = findViewById<Button>(R.id.pushToFirebase)
+
+
+//ACTUALLY creates the instance of our database worker thingy
+//myDB = Firebase.database.reference
+
+//returns you a new key for your new object!
+
+//To store a new item in the firebase
+//1. get the table / entity / class
+//database.child("classname")
+
+//Grab everything with message tag and store it in the query object
+//var query = myDB.child("message.orderByKey()")
+//database.child("Message").child("longFancyKeyHere").child("text").setValue("my message")
+
+//Need to use an event listener b/c we need to wait for the data
+//Every snap (snapshot) is a .json object. --> it is the query result
+//        for (key in snapshot.key)
+//        {
+//            var msg = snapshot[key]
+//        }
+
+// val key = myDB.child("message").push().key
+
+//TODO: Remove this code! It was for testing Firebase / bundle passing. We don't need it anymore! Just kept in case we ever need to look back at it.
 //        test.setOnClickListener{
 //
 //                Intent(this, SecondActivity::class.java).also {
@@ -128,5 +126,3 @@ class MainActivity : ComponentActivity() {
 //    fun writeNewMessage(msgId: String, text: String, timestamp: String){
 //        val msg = Message(text, timestamp)
 //        myDB.child("message").child(msgId).setValue(msg)
-    }
-}
