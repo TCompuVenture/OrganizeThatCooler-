@@ -11,8 +11,6 @@ import com.google.firebase.database.database
 
 
 class MainActivity : ComponentActivity() {
-    //Creates an instance of our database class
-    private lateinit var myDB: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_screen) //How you set what layout runs. Can prob. dump rest of this code.
