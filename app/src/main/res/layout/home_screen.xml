@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="100px">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="207dp"
+        app:srcCompat="@drawable/image" />
 
     <Button
         android:id="@+id/toView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:height="75dp"
         android:text="View" />
 
     <Button
         android:id="@+id/toScanIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:height="75dp"
         android:text="Scan In" />
 
     <Button
         android:id="@+id/toScanOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:height="75dp"
         android:text="Scan Out" />
 
-<!--    <Button-->
-<!--        android:id="@+id/passBundle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="passbundletesting" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/passBundle"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="passbundletesting" />-->
 
-<!--    <Button-->
-<!--        android:id="@+id/pushToFirebase"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Push value to Firebase" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/pushToFirebase"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Push value to Firebase" />-->
 
 </LinearLayout>
