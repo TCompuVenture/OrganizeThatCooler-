@@ -21,11 +21,12 @@
             android:orientation="horizontal"
             android:layout_marginTop="8dp">
 
+
             <TextView
-                android:id="@+id/titleTextView"
+                android:id="@+id/idView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title"/>
+                android:text="ID"/>
 
             <ImageView
                 android:id="@+id/updateButton"
@@ -45,16 +46,22 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/contentTextView"
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Content"/>
+            android:text="Title"/>
 
         <TextView
-            android:id="@+id/contentQuantityView"
+            android:id="@+id/upcView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UPC"/>
+
+        <TextView
+            android:id="@+id/quantityView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity"/>
 
     </LinearLayout>
 
