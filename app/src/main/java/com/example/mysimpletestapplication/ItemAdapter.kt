@@ -16,7 +16,9 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
-        val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
+        val idView: TextView = itemView.findViewById(R.id.idView)
+        val upcView: TextView = itemView.findViewById(R.id.upcView)
+        val quantityView: TextView = itemView.findViewById(R.id.quantityView)
         val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
         val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
 
@@ -32,7 +34,9 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = items[position]
         holder.titleTextView.text = note.title
-        holder.contentTextView.text = note.upc.toString()
+        holder.idView.text = note.id.toString()
+        holder.upcView.text = note.upc.toString()
+        holder.quantityView.text = note.qty.toString()
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{
