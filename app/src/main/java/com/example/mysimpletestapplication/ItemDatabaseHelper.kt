@@ -13,12 +13,13 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         private const val DATABASE_Version = 1
         private const val TABLE_NAME = "allnotes"
         private const val COLUMN_ID = "id"
+        private const val COLUMN_UPC = "upc"
         private const val COLUMN_TITLE = "title"
-        private const val COLUMN_CONTENT = "content"
+        private const val COLUMN_QUANTITY = "quantity"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_TITLE TEXT, $COLUMN_CONTENT TEXT)"
+        val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_TITLE TEXT, $COLUMN_UPC TEXT, $COLUMN_QUANTITY TEXT)"
         db?.execSQL(createTableQuery)
     }
 
@@ -32,8 +33,8 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         val db = writableDatabase
         val values = ContentValues().apply{
             put(COLUMN_TITLE, item.title)
-            put(COLUMN_CONTENT, item.upc)
-            put(COLUMN_CONTENT, item.qty) //Should break stuff
+            put(COLUMN_UPC, item.upc)
+            put(COLUMN_QUANTITY, item.qty) //Should break stuff
         }
         db.insert(TABLE_NAME, null, values)
         db.close()
@@ -48,8 +49,8 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         while(cursor.moveToNext()){
             val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
             val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-            val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_UPC))
+            val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY))
             val item = Item(id, title, upc, qty) //Passing in dummy qty for now
             notesList.add(item)
         }
@@ -62,8 +63,8 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         val db = writableDatabase
         val values = ContentValues().apply{
             put(COLUMN_TITLE, item.title)
-            put(COLUMN_CONTENT, item.upc)
-            put(COLUMN_CONTENT, item.qty) //Should break stuff
+            put(COLUMN_UPC, item.upc)
+            put(COLUMN_QUANTITY, item.qty) //Should break stuff
         }
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(item.id.toString())
@@ -79,9 +80,9 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
 
         val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
         val title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-        val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_UPC))
         //val upc = cursor.getColumnIndexOrThrow(COLUMN_CONTENT)
-        val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+        val qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY))
 
         //remember to add val upc here!
 
@@ -92,7 +93,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
     @SuppressLint("Range") //Ignoring the fact that .getColumnIndex can return a negative value
     fun getNoteByUPC(upc: Long): Item{
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_ID = $upc"
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_UPC = $upc"
         val cursor = db.rawQuery(query, null)
         cursor.moveToFirst()
 
@@ -105,8 +106,8 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         if(cursor != null && cursor.moveToFirst()){ //So if we find something in the DB, return it
             id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID)) //Must be getColumnIndex so it will throw a -1 if not found. But how make it be OK with a negative 1 coming back?
             title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE))
-            upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
-            qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
+            upc = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_UPC))
+            qty = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY))
             cursor.close();
         }
         else

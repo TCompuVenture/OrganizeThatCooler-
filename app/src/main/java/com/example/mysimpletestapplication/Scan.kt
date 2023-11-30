@@ -159,7 +159,7 @@ class Scan : AppCompatActivity() {
                         "Headed to update item!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Intent(this, AddItem::class.java).also {
+                    Intent(this, UpdateActivity::class.java).also {
                         val bundle1 = Bundle()
                         bundle1.putString("key1", barcodeData)
                         it.putExtras(bundle1)

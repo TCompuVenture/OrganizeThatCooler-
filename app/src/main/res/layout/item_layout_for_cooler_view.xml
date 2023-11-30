@@ -50,6 +50,12 @@
             android:layout_height="wrap_content"
             android:text="Content"/>
 
+        <TextView
+            android:id="@+id/contentQuantityView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UPC"/>
+
     </LinearLayout>
 
 
