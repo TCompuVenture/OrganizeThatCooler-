@@ -45,7 +45,7 @@ class Scan : AppCompatActivity() {
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
+        //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
@@ -159,12 +159,14 @@ class Scan : AppCompatActivity() {
                         "Headed to update item!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Intent(this, UpdateActivity::class.java).also {
+                    val intent = Intent(this, UpdateActivity::class.java).also {
                         val bundle1 = Bundle()
-                        bundle1.putString("key1", barcodeData)
+                        bundle1.putString("key1", rawUPC)
                         it.putExtras(bundle1)
-                        startActivity(it)
+                        //startActivity(it)
                     }
+                    startActivity(intent)
+                    return
                 }
 
                 if (s.compareTo("Out").equals(0)) { //This does not belong here...
