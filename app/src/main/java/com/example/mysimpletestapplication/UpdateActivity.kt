@@ -35,7 +35,7 @@ class UpdateActivity : AppCompatActivity() {
         binding.contentEditText.setText(item.upc.toString())
 
         //For quantity buttons
-        var quantity: Int = 0;
+        var quantity: Int = item.qty;
         val qtyTextBox : TextView = findViewById<TextView>(R.id.quantityTextBox)
         var text = "Quantity: $quantity";
         qtyTextBox.text = item.qty.toString();

@@ -66,7 +66,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
             put(COLUMN_UPC, item.upc)
             put(COLUMN_QUANTITY, item.qty) //Should break stuff
         }
-        val whereClause = "$COLUMN_ID = ?"
+        val whereClause = "$COLUMN_UPC = ?"
         val whereArgs = arrayOf(item.id.toString())
         db.update(TABLE_NAME, values, whereClause, whereArgs)
         db.close()
