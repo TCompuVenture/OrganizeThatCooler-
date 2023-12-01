@@ -66,8 +66,13 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
             put(COLUMN_UPC, item.upc)
             put(COLUMN_QUANTITY, item.qty) //Should break stuff
         }
-        val whereClause = "$COLUMN_UPC = ?"
+        //I think our problem is not switching from id to upc. I don't understand the DB logic, so can't fix it
+        //I have commented out what I thought was the solution but caused the app to crash. Hopefully, it gets you started!
+        //val whereClause = "$COLUMN_UPC = $item.upc"
+        val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(item.id.toString())
+        //val whereArgs = arrayOf(item.upc.toString())
+
         db.update(TABLE_NAME, values, whereClause, whereArgs)
         db.close()
     }
