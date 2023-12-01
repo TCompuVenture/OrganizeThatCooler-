@@ -40,7 +40,7 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{
-                putExtra("note_id", note.id)
+                putExtra("key1", note.upc)
             }
             holder.itemView.context.startActivity(intent)
         }

@@ -169,13 +169,13 @@ class Scan : AppCompatActivity() {
                     return
                 }
 
-                if (s.compareTo("Out").equals(0)) { //This does not belong here...
-                    Toast.makeText(
-                        this,
-                        "It is impossible to scan something in that does not exist, sir!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+//                if (s.compareTo("Out").equals(0)) { //This does not belong here...
+//                    Toast.makeText(
+//                        this,
+//                        "It is impossible to scan something in that does not exist, sir!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
 
             }
         else if (UPC == 0.toLong())
