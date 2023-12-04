@@ -60,7 +60,11 @@ class UpdateActivity : AppCompatActivity() {
             val newUPCtemp = binding.contentEditText.text.toString()
             val newUPC = newUPCtemp.toLong()
             val updateItem = Item(noteId, newTitle, newUPC, quantity) //Passing default value for now
-            db.updateItem(updateItem)
+
+            db.deleteItem(item.id) //since update function isn't working I just deleted and reinserted the item
+            db.insertItem(updateItem)
+
+            //db.updateItem(updateItem) //update function doesn't seem to be working
             finish()
             Toast.makeText(this, "Changes Saved", Toast.LENGTH_SHORT).show()
             Intent(this, ScanComplete::class.java).also {
