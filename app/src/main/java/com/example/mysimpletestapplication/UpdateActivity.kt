@@ -37,21 +37,21 @@ class UpdateActivity : AppCompatActivity() {
         //For quantity buttons
         var quantity: Int = item.qty;
         val qtyTextBox : TextView = findViewById<TextView>(R.id.quantityTextBox)
-        var text = "Quantity: $quantity";
-        qtyTextBox.text = item.qty.toString();
+        var text = "Quantity: $quantity"
+        qtyTextBox.text = text
 
         binding.addButtonAddItem.setOnClickListener {
             quantity++;
-            text = "Quantity: $quantity";
-            qtyTextBox.text = text;
+            text = "Quantity: $quantity"
+            qtyTextBox.text = text
         }
         binding.buttonMinus.setOnClickListener {
             if(quantity > 0)
             {
-                quantity--;
+                quantity--
             }
-            text = "Quantity: $quantity";
-            qtyTextBox.text = text;
+            text = "Quantity: $quantity"
+            qtyTextBox.text = text
         }
 
 

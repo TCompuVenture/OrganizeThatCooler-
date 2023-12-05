@@ -45,7 +45,7 @@ class Scan : AppCompatActivity() {
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
         //-------------------
-        //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
+        nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
         toMenu.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
@@ -152,7 +152,7 @@ class Scan : AppCompatActivity() {
         //The problem with this is I am using intent wrong. Why can I use it this way on MainActivity but not here? Also: Why no error?
 
         //TODO: Fix this logic. It still just adds an item, even when item already exists. Darn it.
-        if (item.upc > 0 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
+        if (item.upc > 0 && UPC != 0L) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
                 if (s.compareTo("In").equals(0)) {
                     Toast.makeText(
                         this,
@@ -178,7 +178,7 @@ class Scan : AppCompatActivity() {
 //                }
 
             }
-        else if (UPC == 0.toLong())
+        else if (UPC == 0L)
         {
             Toast.makeText(
                 this,
