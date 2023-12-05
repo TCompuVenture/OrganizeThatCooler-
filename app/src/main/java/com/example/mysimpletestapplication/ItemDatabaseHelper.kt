@@ -43,7 +43,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
     fun getAllItems(): List<Item> {
         val notesList = mutableListOf<Item>()
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"// WHERE $COLUMN_QUANTITY > 0
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_QUANTITY > 0"
         val cursor = db.rawQuery(query, null)
 
         while(cursor.moveToNext()){
