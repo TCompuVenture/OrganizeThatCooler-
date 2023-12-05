@@ -18,7 +18,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         private const val COLUMN_QUANTITY = "quantity"
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
+    override fun onCreate(db: SQLiteDatabase?) {//TODO: This right here \/\/\/\/\/ makes it so that when you edit an item from the view screen it gives it  anew id
         val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_TITLE TEXT, $COLUMN_UPC TEXT, $COLUMN_QUANTITY TEXT)"
         db?.execSQL(createTableQuery)
     }

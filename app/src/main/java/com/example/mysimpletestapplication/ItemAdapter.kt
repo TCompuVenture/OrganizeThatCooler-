@@ -2,6 +2,7 @@ package com.example.mysimpletestapplication
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,7 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{
-                putExtra("key1", note.upc)
+                putExtra("key1", note.upc.toString())
             }
             holder.itemView.context.startActivity(intent)
         }
