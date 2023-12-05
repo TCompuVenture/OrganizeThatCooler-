@@ -2,6 +2,7 @@ package com.example.mysimpletestapplication
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,14 +34,14 @@ class ItemAdapter (private var items: List<Item>, context: Context) : RecyclerVi
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = items[position]
-        holder.titleTextView.text = note.title
-        holder.idView.text = note.id.toString()
-        holder.upcView.text = note.upc.toString()
-        holder.quantityView.text = note.qty.toString()
+        holder.titleTextView.text = "Name: " + note.title
+        holder.idView.text = "ID: " + note.id.toString()
+        holder.upcView.text = "UPC: " + note.upc.toString()
+        holder.quantityView.text = "Quantity: " + note.qty.toString()
 
         holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateActivity::class.java).apply{
-                putExtra("key1", note.upc)
+                putExtra("key1", note.upc.toString())
             }
             holder.itemView.context.startActivity(intent)
         }

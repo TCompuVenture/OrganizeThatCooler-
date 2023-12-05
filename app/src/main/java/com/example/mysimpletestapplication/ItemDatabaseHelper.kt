@@ -18,7 +18,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         private const val COLUMN_QUANTITY = "quantity"
     }
 
-    override fun onCreate(db: SQLiteDatabase?) {
+    override fun onCreate(db: SQLiteDatabase?) {//TODO: This right here \/\/\/\/\/ makes it so that when you edit an item from the view screen it gives it  anew id
         val createTableQuery = "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_TITLE TEXT, $COLUMN_UPC TEXT, $COLUMN_QUANTITY TEXT)"
         db?.execSQL(createTableQuery)
     }
@@ -43,7 +43,7 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
     fun getAllItems(): List<Item> {
         val notesList = mutableListOf<Item>()
         val db = readableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COLUMN_QUANTITY > 0"
         val cursor = db.rawQuery(query, null)
 
         while(cursor.moveToNext()){
@@ -71,6 +71,24 @@ class ItemDatabaseHelper (context: Context) : SQLiteOpenHelper(context, DATABASE
         //val whereClause = "$COLUMN_UPC = $item.upc"
         val whereClause = "$COLUMN_ID = ?"
         val whereArgs = arrayOf(item.id.toString())
+        //val whereArgs = arrayOf(item.upc.toString())
+
+        db.update(TABLE_NAME, values, whereClause, whereArgs)
+        db.close()
+    }
+
+    fun updateItemByUPC(item: Item){
+        val db = writableDatabase
+        val values = ContentValues().apply{
+            put(COLUMN_TITLE, item.title)
+            //put(COLUMN_UPC, item.upc)
+            put(COLUMN_QUANTITY, item.qty) //Should break stuff
+        }
+        //I think our problem is not switching from id to upc. I don't understand the DB logic, so can't fix it
+        //I have commented out what I thought was the solution but caused the app to crash. Hopefully, it gets you started!
+        //val whereClause = "$COLUMN_UPC = $item.upc"
+        val whereClause = "$COLUMN_UPC = ?"
+        val whereArgs = arrayOf(item.upc.toString())
         //val whereArgs = arrayOf(item.upc.toString())
 
         db.update(TABLE_NAME, values, whereClause, whereArgs)
