@@ -43,7 +43,7 @@ class Scan : AppCompatActivity() {
         barcodeText = findViewById<View>(R.id.barcode_text) as TextView?
         val toMenu: Button = findViewById(R.id.toMenu)
         val bundle = intent.extras
-        val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        val s = bundle!!.getString("inOrOut", "No value from MainActivity :(")
         //-------------------
         //nextScreen(s, "1")//Get rid of this to test the barcode scanner on your phone
         //-------------------
@@ -153,31 +153,41 @@ class Scan : AppCompatActivity() {
 
         //TODO: Fix this logic. It still just adds an item, even when item already exists. Darn it.
         if (item.upc > 0 && UPC != 0.toLong()) { //NOT item = null because an item IS being returned, even when nothing is found in the DB. (An item with all -1s, but an item, nonetheless)
-                if (s.compareTo("In").equals(0)) {
+            if (s.compareTo("In").equals(0)) {
+                Toast.makeText(
+                    this,
+                    "Headed to update item!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, UpdateActivity::class.java).also {
+                    val bundle1 = Bundle()
+                    bundle1.putString("key1", rawUPC)
+                    bundle1.putString("inOrOut", "In")
+                    it.putExtras(bundle1)
+                    //startActivity(it)
+                }
+                startActivity(intent)
+                return
+            }
+
+            if (s.compareTo("Out").equals(0)) { //This does not belong here...
+                val intent = Intent(this, UpdateActivity::class.java).also {
+                    val bundle1 = Bundle()
+                    bundle1.putString("key1", rawUPC)
+                    bundle1.putString("inOrOut", "Out")
+                    it.putExtras(bundle1)
+                }
+                startActivity(intent)
+                if (s.compareTo("No value from MainActivity :(").equals(0)) {
                     Toast.makeText(
                         this,
-                        "Headed to update item!",
+                        "What the heck",
                         Toast.LENGTH_SHORT
                     ).show()
-                    val intent = Intent(this, UpdateActivity::class.java).also {
-                        val bundle1 = Bundle()
-                        bundle1.putString("key1", rawUPC)
-                        it.putExtras(bundle1)
-                        //startActivity(it)
-                    }
-                    startActivity(intent)
-                    return
                 }
 
-//                if (s.compareTo("Out").equals(0)) { //This does not belong here...
-//                    Toast.makeText(
-//                        this,
-//                        "It is impossible to scan something in that does not exist, sir!",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-
             }
+        }
         else if (UPC == 0.toLong())
         {
             Toast.makeText(
@@ -219,4 +229,4 @@ class Scan : AppCompatActivity() {
         return
     }
 
-}
+} //short-term fix. Eventually, should discover where this belongs!

@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         toScanIn.setOnClickListener{
             Intent(this, Scan::class.java).also {
                 var bundle2 = Bundle()
-                bundle2.putString("key1", "In")
+                bundle2.putString("inOrOut", "In")
                 //passing in a bundle to tell the Scan screen which screen to go after scanning a barcode
                 it.putExtras(bundle2)
                 startActivity(it)
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
         toScanOut.setOnClickListener{
             Intent(this, Scan::class.java).also {
                 var bundle1 = Bundle()
-                bundle1.putString("key1", "Out")
+                bundle1.putString("inOrOut", "Out")
                 //passing in a bundle to tell the Scan screen which screen to go after scanning a barcode
                 it.putExtras(bundle1)
                 startActivity(it)
