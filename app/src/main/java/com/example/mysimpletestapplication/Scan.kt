@@ -198,7 +198,7 @@ class Scan : AppCompatActivity() {
             //Prob. should restart scan screen at this point.
         }
 
-        else
+        else if (item.upc == -1L && s.compareTo("In").equals(0))
         {
             Toast.makeText(
                 this,
@@ -226,6 +226,13 @@ class Scan : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
+        else{
+            Toast.makeText(
+                this,
+                "You cannot scan an item out that does not exist!!!!",
+                Toast.LENGTH_LONG
+            ).show()
+        }
         return
     }
 
