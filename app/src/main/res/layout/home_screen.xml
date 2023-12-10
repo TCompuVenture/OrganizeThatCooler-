@@ -4,38 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E7F3FB"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="100px">
+
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Organize That Freezer!"
+        android:textColor="#000000"
+        android:textSize="50sp" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/fridge_icon"
-        android:src="@drawable/fridge_icon" />
+        android:layout_margin="15dp"
+        android:src="@drawable/fridge_icon"
+        app:srcCompat="@drawable/fridge_icon" />
 
     <Button
         android:id="@+id/toView"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
         android:height="75dp"
-        android:text="View" />
+        android:background="@drawable/mybutton"
+        android:text="View"
+        android:textColor="#47E9FF" />
 
     <Button
         android:id="@+id/toScanIn"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
         android:height="75dp"
-        android:text="Scan In" />
+        android:background="@drawable/mybutton"
+        android:text="Scan In"
+        android:textColor="#47E9FF" />
 
     <Button
         android:id="@+id/toScanOut"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
         android:height="75dp"
-        android:text="Scan Out" />
+        android:background="@drawable/mybutton"
+        android:text="Scan Out"
+        android:textColor="#47E9FF" />
 
     <!--    <Button-->
     <!--        android:id="@+id/passBundle"-->

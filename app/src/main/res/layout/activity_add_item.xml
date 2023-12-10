@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E7F3FB"
     tools:context=".AddItem">
 
     <TextView
@@ -14,7 +15,8 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
+        app:layout_constraintTop_toBottomOf="@+id/saveButton"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/saveButton"
@@ -34,6 +36,7 @@
         android:ems="10"
         android:inputType="text"
         android:text="Name"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/contentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -48,6 +51,7 @@
         android:ems="10"
         android:inputType="text"
         android:text="Name3"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +73,7 @@
         android:layout_marginEnd="112dp"
         android:layout_marginBottom="15dp"
         android:text="Item Name:"
-        android:textColor="#F44336"
+        android:textColor="#000000"
         android:textSize="36dp"
         app:layout_constraintBottom_toTopOf="@+id/titleEditText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="UPC"
+        android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +97,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Quantity:  "
+        android:text="Quantity: 0 "
+
+        android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +109,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="52dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:background="#FF5722"
+            android:background="@drawable/minusbutton"
             android:text="-"
             android:textSize="36sp" />
 
@@ -124,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:background="#00B512"
+            android:background="@drawable/addbutton"
             android:text="+"
             android:textColor="#000000"
             android:textSize="36sp" />

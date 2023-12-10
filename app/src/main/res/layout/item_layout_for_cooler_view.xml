@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
+
     app:cardUseCompatPadding="true">
 
 
@@ -13,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@drawable/mybutton">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -26,7 +28,8 @@
                 android:id="@+id/idView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID"/>
+                android:text="ID"
+                android:textColor="#47E9FF"/>
 
             <ImageView
                 android:id="@+id/updateButton"
@@ -49,19 +52,22 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"/>
+            android:text="Title"
+            android:textColor="#47E9FF"/>
 
         <TextView
             android:id="@+id/upcView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UPC"/>
+            android:text="UPC"
+            android:textColor="#47E9FF"/>
 
         <TextView
             android:id="@+id/quantityView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantity"/>
+            android:text="Quantity"
+            android:textColor="#47E9FF"/>
 
     </LinearLayout>
 

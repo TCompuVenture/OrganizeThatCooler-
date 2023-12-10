@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="#E7F3FB"
     android:layout_height="match_parent">
 
     <TextView
@@ -9,13 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Scan In Complete"
+        android:textColor="#000000"
+        android:layout_marginTop="100dp"
         android:textAlignment="center"
         android:textSize="40sp" />
 
     <Button
         android:id="@+id/home1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Back" />
+        android:layout_height="100dp"
+        android:background="@drawable/mybutton"
+        android:text="Back"
+        android:textSize="20sp"
+        android:layout_gravity="bottom"
+        android:textColor="#47E9FF"
+        android:layout_marginTop="430dp"
+        android:layout_marginHorizontal="10dp" />
 
 </LinearLayout>
