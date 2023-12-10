@@ -30,10 +30,11 @@
 
     <Button
         android:id="@+id/toView"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
+        android:paddingHorizontal="10dp"
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="View"
@@ -41,10 +42,11 @@
 
     <Button
         android:id="@+id/toScanIn"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
+        android:paddingHorizontal="10dp"
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="Scan In"
@@ -52,10 +54,11 @@
 
     <Button
         android:id="@+id/toScanOut"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
+        android:paddingHorizontal="10dp"
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="Scan Out"

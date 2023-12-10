@@ -33,7 +33,7 @@
         android:id="@+id/toMenu"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="660dp"
         android:background="@drawable/mybutton"
         android:text="Back"
         android:textColor="#FFFFFF"
