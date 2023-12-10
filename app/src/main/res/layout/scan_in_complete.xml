@@ -23,7 +23,7 @@
         android:text="Back"
         android:textSize="20sp"
         android:layout_gravity="bottom"
-        android:textColor="#47E9FF"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="430dp"
         android:layout_marginHorizontal="10dp" />
 

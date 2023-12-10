@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Organize That Freezer!"
+        android:text="Organize That Cooler!"
         android:textColor="#000000"
         android:textSize="50sp" />
 
@@ -37,7 +37,7 @@
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="View"
-        android:textColor="#47E9FF" />
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/toScanIn"
@@ -48,7 +48,7 @@
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="Scan In"
-        android:textColor="#47E9FF" />
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/toScanOut"
@@ -59,7 +59,7 @@
         android:height="75dp"
         android:background="@drawable/mybutton"
         android:text="Scan Out"
-        android:textColor="#47E9FF" />
+        android:textColor="#FFFFFF" />
 
     <!--    <Button-->
     <!--        android:id="@+id/passBundle"-->

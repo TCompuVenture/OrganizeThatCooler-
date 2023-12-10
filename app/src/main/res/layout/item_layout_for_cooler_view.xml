@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ID"
-                android:textColor="#47E9FF"/>
+                android:textColor="#FFFFFF"/>
 
             <ImageView
                 android:id="@+id/updateButton"
@@ -53,21 +53,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textColor="#47E9FF"/>
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/upcView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UPC"
-            android:textColor="#47E9FF"/>
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/quantityView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quantity"
-            android:textColor="#47E9FF"/>
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 

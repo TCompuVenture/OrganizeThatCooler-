@@ -36,7 +36,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/mybutton"
         android:text="Back"
-        android:textColor="#47E9FF"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
