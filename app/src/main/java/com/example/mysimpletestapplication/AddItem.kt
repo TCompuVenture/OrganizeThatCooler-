@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import com.example.mysimpletestapplication.databinding.ActivityAddItemBinding
+import org.w3c.dom.Text
 
 class AddItem : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class AddItem : AppCompatActivity() {
         val UPCText : TextView = findViewById<TextView>(R.id.contentEditText)
         UPCText.text = s //Getting UPC from bundle
         db = ItemDatabaseHelper(this)
+        val nameTextBox : TextView = findViewById<TextView>(R.id.titleEditText)
         //For quantity buttons
         var quantity: Int = 0;
         val qtyTextBox : TextView = findViewById<TextView>(R.id.quantityTextBox)
@@ -39,6 +41,12 @@ class AddItem : AppCompatActivity() {
             }
             text = "Quantity: $quantity";
             qtyTextBox.text = text;
+        }
+
+        nameTextBox.setOnClickListener{
+            if(nameTextBox.text.equals("Name")){
+                nameTextBox.text = ""
+            }
         }
 
 
