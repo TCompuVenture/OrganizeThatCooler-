@@ -214,6 +214,7 @@ class Scan : AppCompatActivity() {
                     Intent(this, AddItem::class.java).also {
                         val bundle1 = Bundle()
                         bundle1.putString("key1", barcodeData)
+                        bundle1.putString("inOrOut", "In")
                         it.putExtras(bundle1)
                         startActivity(it)
                     }

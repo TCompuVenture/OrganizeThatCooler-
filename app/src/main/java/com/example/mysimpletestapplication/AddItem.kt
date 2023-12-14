@@ -19,6 +19,7 @@ class AddItem : AppCompatActivity() {
         setContentView(binding.root)
         val bundle = intent.extras
         val s = bundle!!.getString("key1", "No value from MainActivity :(")
+        val inOrOut = bundle!!.getString("inOrOut", "No value from MainActivity :(")
         val UPCText : TextView = findViewById<TextView>(R.id.contentEditText)
         UPCText.text = s //Getting UPC from bundle
         db = ItemDatabaseHelper(this)
@@ -67,6 +68,9 @@ class AddItem : AppCompatActivity() {
                 db.insertItem(item)
                 Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
                 Intent(this, ScanComplete::class.java).also {
+                    val bundle1 = Bundle()
+                    bundle1.putString("inOrOut", inOrOut)
+                    it.putExtras(bundle1)
                     startActivity(it)
                 }
                 finish()
